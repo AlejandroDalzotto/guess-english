@@ -1,27 +1,31 @@
+import { verbs } from "@/lib/data";
+import { generateOptions } from "@/lib/utils";
+
 export default function GuessTheVerbMode() {
+
+  const randIndex = Math.floor(Math.random() * verbs.length);
+  const verb = verbs.at(randIndex)
+  const options = generateOptions(verb?.translations.at(0) ?? "")
 
   return (
     <article className="h-full">
       <header>
 
-        <p className="text-balance text-center">¿What&apos;s the correct translation of the verb <strong>See</strong>?</p>
+        <p className="text-balance text-center">¿What&apos;s the correct translation of the verb <strong className="capitalize">{verb?.value}</strong>?</p>
 
       </header>
 
-      <article className="grid grid-cols-2 gap-10 p-10">
+      <article className="grid grid-cols-2 gap-10 p-5">
 
-        <div className="bg-white/5 opacity-75 hover:opacity-100 grid place-content-center border border-neutral-700 h-full aspect-square transition-all rounded-lg dark:hover:scale-105 hover:scale-105">
-          <p className="text-2xl font-bold">Ver</p>
-        </div>
-        <div className="bg-white/5 opacity-75 hover:opacity-100 grid place-content-center border border-neutral-700 h-full aspect-square transition-all rounded-lg dark:hover:scale-105 hover:scale-105">
-          <p className="text-2xl font-bold">Mirar</p>
-        </div>
-        <div className="bg-white/5 opacity-75 hover:opacity-100 grid place-content-center border border-neutral-700 h-full aspect-square transition-all rounded-lg dark:hover:scale-105 hover:scale-105">
-          <p className="text-2xl font-bold">Pedir</p>
-        </div>
-        <div className="bg-white/5 opacity-75 hover:opacity-100 grid place-content-center border border-neutral-700 h-full aspect-square transition-all rounded-lg dark:hover:scale-105 hover:scale-105">
-          <p className="text-2xl font-bold">Obtener</p>
-        </div>
+        {
+          options.map((option) => {
+            return (
+              <div key={crypto.randomUUID()} className="bg-white/5 opacity-75 hover:opacity-100 grid place-content-center border border-neutral-700 h-full aspect-square transition-all rounded-lg dark:hover:scale-105 hover:scale-105">
+                <p className="text-xl capitalize text-balance text-center font-bold">{option}</p>
+              </div>
+            )
+          })
+        }
 
       </article>
 
