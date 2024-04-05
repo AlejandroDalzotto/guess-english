@@ -34,7 +34,7 @@ export default function GameModes() {
 
               <Link
                 href={mode.href}
-                className="relative hover:bg-white/5 grid place-content-center border border-neutral-700 h-full p-6 transition-all rounded-lg dark:hover:scale-105 dark:hover:bg-primary dark:shadow-darkbox hover:scale-105 shadow-box"
+                className="relative hover:bg-white/5 grid place-content-center border border-neutral-700 h-full p-6 transition-all rounded-lg dark:hover:scale-105 hover:scale-105"
                 key={mode.uuid}
               >
                 <h3 className="capitalize text-2xl font-medium">{mode.name}</h3>
