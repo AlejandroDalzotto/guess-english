@@ -1,6 +1,11 @@
-import { translatedVerbs } from "@/lib/data";
+import { translatedVerbs, verbs } from "@/lib/data";
+import type { Verb } from "./types";
 
-export const generateOptions = (mainVerb: string): string[] => {
+export const generateOptions = (mainVerb: string | undefined): string[] => {
+
+  if (!mainVerb || mainVerb === "") {
+    throw new Error("It was a problem generating the options.")
+  }
 
   const options = [mainVerb]
 
@@ -10,6 +15,18 @@ export const generateOptions = (mainVerb: string): string[] => {
     options.push(translatedVerbs[j])
   }
   return shuffleArray(options);
+}
+
+export const getRandomVerb = (): Verb => {
+
+  const randIndex = Math.floor(Math.random() * verbs.length);
+  const verb = verbs.at(randIndex)
+
+  if(!verb) {
+    throw new Error("Verb doesn't found.")
+  }
+
+  return verb
 }
 
 export const shuffleArray = <T>(array: T[]): T[] => {
