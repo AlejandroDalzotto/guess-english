@@ -4,29 +4,35 @@ import type { Verb } from "./types";
 export const generateOptions = (mainVerb: string | undefined): string[] => {
 
   if (!mainVerb || mainVerb === "") {
-    throw new Error("It was a problem generating the options.")
+    throw new Error("There was a problem generating the options.");
   }
 
-  const options = [mainVerb]
+  const options = [mainVerb];
 
-  for (let i = 1; i < 4; i++) {
-
-    const j = Math.floor(Math.random() * translatedVerbs.length);
-    options.push(translatedVerbs[j])
+  while (options.length < 4) {
+    const randIndex = Math.floor(Math.random() * translatedVerbs.length);
+    const randomVerb = translatedVerbs[randIndex];
+    if (!options.includes(randomVerb)) {
+      options.push(randomVerb);
+    }
   }
+
   return shuffleArray(options);
 }
 
-export const getRandomVerb = (): Verb => {
+export const getRandomVerb = (currentVerbsHistory: Verb[]): Verb => {
+  let verb: Verb | undefined;
 
-  const randIndex = Math.floor(Math.random() * verbs.length);
-  const verb = verbs.at(randIndex)
+  do {
+    const randIndex = Math.floor(Math.random() * verbs.length);
+    verb = verbs.at(randIndex);
+  } while (verb && currentVerbsHistory.some(v => v.value === verb?.value));
 
-  if(!verb) {
-    throw new Error("Verb doesn't found.")
+  if (!verb) {
+    throw new Error("Verb not found.");
   }
 
-  return verb
+  return verb;
 }
 
 export const shuffleArray = <T>(array: T[]): T[] => {
@@ -37,4 +43,24 @@ export const shuffleArray = <T>(array: T[]): T[] => {
   }
 
   return array;
+}
+
+export const calculatePoints = (currentPoints: number, streak: number, operation: "sum" | "sub" = "sum"): number => {
+  // Base points won or lost
+  let points = 10;
+
+  if (streak > 0) {
+    // Point multiplier based on streak
+    const multiplier = Math.log2(streak + 1);
+
+    // Apply the multiplier to the base points
+    points *= multiplier;
+
+  }
+
+  if (operation === "sub") {
+    return Math.round(currentPoints - points);
+  }
+
+  return Math.round(currentPoints + points);
 }
