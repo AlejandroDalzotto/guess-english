@@ -22,9 +22,6 @@ export default function GuessTheVerbPage() {
       <section className="relative row-span-6">
         <GuessTheVerbMode />
       </section>
-      <footer className="row-span-2">
-
-      </footer>
     </main>
   )
 }

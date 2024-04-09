@@ -1,5 +1,4 @@
 import GameModes from "@/components/GameModes";
-import GoBackButton from "@/components/GoBackButton";
 import Title from "@/components/Title";
 import Link from "next/link";
 
