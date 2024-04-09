@@ -5,11 +5,7 @@ interface Props {
 
 export default function Phrase({ text, word }: Props) {
 
-  const regex = new RegExp(word, 'gi');
-
   const parts = text.split(" ")
-
-  console.log({ parts, text })
 
   return (
     <p>
