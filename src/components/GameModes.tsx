@@ -1,6 +1,7 @@
 import { randomUUID, type UUID } from "crypto";
 import Link from "next/link";
 import LinkToRecords from "./LinkToRecords";
+import clsx from "clsx";
 
 interface GameMode {
   uuid: UUID;
@@ -12,6 +13,7 @@ interface GameMode {
     url: string;
     label: string;
   };
+  available: boolean;
 }
 
 const modes: GameMode[] = [
@@ -24,7 +26,8 @@ const modes: GameMode[] = [
       store: "gtv__s",
       label: "View verbs history",
       url: "/verbs-history"
-    }
+    },
+    available: true,
   },
   {
     uuid: randomUUID(),
@@ -35,7 +38,8 @@ const modes: GameMode[] = [
       store: "ctp__s",
       label: "View phrases history",
       url: "/phrases-history"
-    }
+    },
+    available: false,
   }
 ]
 
@@ -52,14 +56,20 @@ export default function GameModes() {
               <div className="flex flex-col items-start gap-y-3" key={mode.uuid}>
                 <Link
                   href={mode.href}
-                  className="relative hover:bg-white/5 grid place-content-center border border-neutral-700 h-full p-6 transition-all rounded-lg hover:scale-105"
+                  className={
+                    clsx(
+                      "relative grid place-content-center border border-neutral-700 h-full p-6 transition-all rounded-lg",
+                      { "active:scale-95 hover:bg-white/5 hover:scale-105": mode.available },
+                      { "pointer-events-none opacity-80 brightness-75": !mode.available }
+                    )
+                  }
                 >
                   <h3 className="capitalize text-2xl font-medium">{mode.name}</h3>
                   <p>{mode.shortDescription}</p>
                   <span
                     className="mt-6 text-right underline text-blue-500 dark:text-indigo-500"
                   >
-                    Let&apos;s try...
+                    {mode.available ? "Let's try..." : "Not yet available..."}
                   </span>
                 </Link>
 
