@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 export default function LinkToRecords({
   history
@@ -12,7 +13,21 @@ export default function LinkToRecords({
   }
 }) {
 
-  const hasStoredData = Boolean(localStorage.getItem(history.store))
+  const [hasStoredData, setHasStoredData] = useState(false)
+
+  useEffect(() => {
+
+    if (typeof window !== "undefined" && window.localStorage) {
+
+      const guessStorage = JSON.parse(window.localStorage.getItem(history.store) ?? "{\"verbs\":[]}") as { verbs: string[] }
+
+      if (guessStorage.verbs.length) {
+        setHasStoredData(true)
+      }
+    }
+
+  }, [history.store])
+
 
   if (!hasStoredData) {
     return (

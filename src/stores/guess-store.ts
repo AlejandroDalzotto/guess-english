@@ -45,6 +45,15 @@ export const useGuessStore = create<State & Actions>()(
       onVictory: () => {
 
         const guessedVerb = get().verb!
+
+        const guessStorage = JSON.parse(localStorage.getItem("gtv__s") ?? "{\"verbs\":[]}") as { verbs: string[] }
+
+        if (!guessStorage.verbs.includes(guessedVerb.value)) {
+          guessStorage.verbs.push(guessedVerb.value)
+        }
+
+        localStorage.setItem("gtv__s", JSON.stringify(guessStorage))
+
         set((state) => ({
           streak: state.streak + 1,
           points: state.points + 5,
