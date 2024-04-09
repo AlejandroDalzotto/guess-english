@@ -1,3 +1,4 @@
+import GoBackButton from "@/components/GoBackButton";
 import GuessTheVerbMode from "@/components/GuessTheVerbMode";
 import Title from "@/components/Title";
 import { type Metadata } from "next";
@@ -11,6 +12,9 @@ export default function GuessTheVerbPage() {
   return (
     <main className="px-6 container mx-auto grid grid-rows-10 max-h-screen min-h-screen">
       <header className="row-span-2 flex flex-col gap-y-8 items-center justify-center">
+        <div className="w-full grid grid-cols-3">
+          <GoBackButton backTo="home" label="Back to home" />
+        </div>
         <Title>
           ¡Guess <br className="md:hidden" /> the verb!
         </Title>
