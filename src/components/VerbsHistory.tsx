@@ -46,7 +46,7 @@ export default function VerbsHistory() {
               {verb.translations.length ? (
                 <section>
                   <h4 className="italic my-3">Common translations</h4>
-                  <div className="grid grid-cols-3 gap-4 my-3">
+                  <div className="flex flex-wrap gap-4 my-3">
                     {
                       verb.translations.map((translation) => {
                         return (
@@ -73,7 +73,7 @@ export default function VerbsHistory() {
                             className="grid place-content-start px-4"
                             key={phrase + verb.value}
                           >
-                            <Phrase text={phrase} word={verb.value} />
+                            <Phrase text={phrase} words={verb.highlight} />
                           </li>
                         )
                       })

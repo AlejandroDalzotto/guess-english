@@ -10,8 +10,8 @@ export const metadata: Metadata = {
 
 export default function VerbsHistoryPage() {
   return (
-    <main className="px-6 container mx-auto grid grid-rows-10 max-h-screen min-h-screen">
-      <header className="row-span-2 flex flex-col gap-y-8 items-center justify-center">
+    <main className="px-6 container mx-auto flex flex-col min-h-screen">
+      <header className="min-h-60 my-5 flex flex-col gap-y-8 items-center justify-center">
         <div className="w-full grid grid-cols-3">
           <GoBackButton backTo="home" label="Back to home" />
         </div>
@@ -19,12 +19,9 @@ export default function VerbsHistoryPage() {
           Verbs <br className="md:hidden" /> History
         </Title>
       </header>
-      <section className="relative row-span-6">
+      <section className="relative min-h-96 my-5">
         <VerbsHistory />
       </section>
-      <footer className="row-span-2">
-
-      </footer>
     </main>
   )
 }
