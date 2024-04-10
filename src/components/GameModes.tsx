@@ -1,7 +1,5 @@
 import { randomUUID } from "crypto";
-import Link from "next/link";
 import LinkToRecords from "./LinkToRecords";
-import clsx from "clsx";
 import { GameMode } from "@/lib/types";
 import GameCard from "./GameCard";
 
@@ -27,6 +25,30 @@ const modes: GameMode[] = [
       store: "ctp__s",
       label: "View phrases history",
       url: "/phrases-history"
+    },
+    available: false,
+  },
+  {
+    uuid: randomUUID(),
+    name: "wordle",
+    shortDescription: "Get 6 chances to guess a word.",
+    href: "/wordle",
+    history: {
+      store: "w__s",
+      label: "View words history",
+      url: "/words-history"
+    },
+    available: true,
+  },
+  {
+    uuid: randomUUID(),
+    name: "Learn",
+    shortDescription: "Read articles on different topics about grammar.",
+    href: "/learn",
+    history: {
+      store: "l__s",
+      label: "View learn history",
+      url: "/learn-history"
     },
     available: false,
   }
