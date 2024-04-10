@@ -51,7 +51,7 @@ export default function GuessTheVerbMode() {
               {
                 store.options.map((option) => {
                   return (
-                    <div onClick={() => handleClick(option)} key={crypto.randomUUID()} className="bg-white/5 opacity-75 hover:opacity-100 grid place-content-center border border-neutral-700 h-full aspect-square transition-all rounded-lg dark:hover:scale-105 hover:scale-105">
+                    <div onClick={() => handleClick(option)} key={crypto.randomUUID()} className="p-3 bg-white/5 opacity-75 hover:opacity-100 grid place-content-center border border-neutral-700 h-full aspect-square transition-all rounded-lg dark:hover:scale-105 hover:scale-105">
                       <p className="select-none text-xl capitalize text-balance text-center font-bold">{option}</p>
                     </div>
                   )

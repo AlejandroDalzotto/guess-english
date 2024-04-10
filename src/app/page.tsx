@@ -6,7 +6,7 @@ export default function HomePage() {
 
   return (
     <main className="px-6 container flex flex-col mx-auto min-h-screen">
-      <header className="flex min-h-96 my-5 flex-col gap-y-8 items-center justify-center">
+      <header className="flex min-h-96 flex-col gap-y-8 items-center justify-center">
         <Title>
           ¡Guess <br className="md:hidden" /> English!
         </Title>

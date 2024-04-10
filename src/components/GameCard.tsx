@@ -24,7 +24,7 @@ export default function GameCard({ mode }: Props) {
       }}
       className={
         clsx(
-          "relative grid place-content-center border border-neutral-700 h-full p-6 transition-all rounded-lg",
+          "relative w-full flex flex-col border border-neutral-700 h-full p-6 transition-all rounded-lg",
           { "active:scale-95 hover:bg-white/5 hover:scale-105": mode.available },
           { "pointer-events-none opacity-80 brightness-75": !mode.available }
         )
