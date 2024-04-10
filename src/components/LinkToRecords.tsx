@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import useSound from "use-sound";
 
 export default function LinkToRecords({
   history
@@ -14,6 +15,8 @@ export default function LinkToRecords({
 }) {
 
   const [hasStoredData, setHasStoredData] = useState(false)
+  const [playOnDown] = useSound("/audio/pop-down.mp3", { volume: 0.5 })
+  const [playOnUp] = useSound("/audio/pop-up-on.mp3", { volume: 0.5 })
 
   useEffect(() => {
 
@@ -36,7 +39,14 @@ export default function LinkToRecords({
   }
 
   return (
-    <Link className="group/link transition-all active:scale-90 flex gap-x-2 mx-auto items-center underline hover:text-blue-500 dark:hover:[text-shadow:1px_0_10px] dark:shadow-indigo-500 dark:hover:text-indigo-500" href={history.url}>
+    <Link
+      className="group/link transition-all active:scale-90 flex gap-x-2 mx-auto items-center underline hover:text-blue-500 dark:hover:[text-shadow:1px_0_10px] dark:shadow-indigo-500 dark:hover:text-indigo-500"
+      href={history.url}
+      onMouseDown={() => playOnDown()}
+      onMouseUp={() => {
+        playOnUp()
+      }}
+    >
       <svg className="w-8 dark:fill-white transition-colors h-8 group-hover/link:fill-blue-500 dark:group-hover/link:fill-indigo-500">
         <use xlinkHref="/sprites.svg#completed"></use>
       </svg>

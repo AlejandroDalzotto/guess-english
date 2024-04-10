@@ -22,6 +22,7 @@ export default function HomePage() {
 
         <p>made with ❤ by {" "}
           <Link
+            target="_blank"
             href="https://github.com/AlejandroDalzotto"
             className="underline hover:text-blue-500 dark:hover:[text-shadow:1px_0_10px] dark:shadow-indigo-500 dark:hover:text-indigo-500"
           >

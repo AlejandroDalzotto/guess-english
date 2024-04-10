@@ -1,20 +1,9 @@
-import { randomUUID, type UUID } from "crypto";
+import { randomUUID } from "crypto";
 import Link from "next/link";
 import LinkToRecords from "./LinkToRecords";
 import clsx from "clsx";
-
-interface GameMode {
-  uuid: UUID;
-  name: string;
-  shortDescription: string;
-  href: string;
-  history: {
-    store: string;
-    url: string;
-    label: string;
-  };
-  available: boolean;
-}
+import { GameMode } from "@/lib/types";
+import GameCard from "./GameCard";
 
 const modes: GameMode[] = [
   {
@@ -54,24 +43,7 @@ export default function GameModes() {
             return (
 
               <div className="flex flex-col items-start gap-y-3" key={mode.uuid}>
-                <Link
-                  href={mode.href}
-                  className={
-                    clsx(
-                      "relative grid place-content-center border border-neutral-700 h-full p-6 transition-all rounded-lg",
-                      { "active:scale-95 hover:bg-white/5 hover:scale-105": mode.available },
-                      { "pointer-events-none opacity-80 brightness-75": !mode.available }
-                    )
-                  }
-                >
-                  <h3 className="capitalize text-2xl font-medium">{mode.name}</h3>
-                  <p>{mode.shortDescription}</p>
-                  <span
-                    className="mt-6 text-right underline text-blue-500 dark:text-indigo-500"
-                  >
-                    {mode.available ? "Let's try..." : "Not yet available..."}
-                  </span>
-                </Link>
+                <GameCard mode={mode} />
 
                 <LinkToRecords history={mode.history} />
               </div>
