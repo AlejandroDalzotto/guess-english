@@ -5,6 +5,7 @@ import { useGuessStore } from "@/stores/guess-store";
 import Loader from "./Loader";
 import useSound from "use-sound";
 import { verbs } from "@/lib/data";
+import TotalProgress from "./TotalProgress";
 
 export default function GuessTheVerbMode() {
 
@@ -59,7 +60,7 @@ export default function GuessTheVerbMode() {
 
             </article>
             <article className="max-w-[416px] mt-3 mx-auto grid place-content-center">
-              <p className="select-none font-bold text-neutral-800 dark:text-white italic">{store.verbsHistory.length} / {verbs.length}</p>
+              <TotalProgress total={verbs.length} current={store.verbsHistory.length} />
             </article>
           </>
         ) : (
