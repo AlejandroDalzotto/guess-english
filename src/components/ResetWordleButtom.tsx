@@ -2,8 +2,6 @@
 
 import { useWordleStore } from "@/stores/wordle-store";
 import useSound from "use-sound";
-import { useStore } from "zustand";
-import Loader from "./Loader";
 import clsx from "clsx";
 
 export default function ResetWordleButtom() {
@@ -11,10 +9,10 @@ export default function ResetWordleButtom() {
   const [playOnDown] = useSound("/audio/pop-down.mp3", { volume: 0.5 })
   const [playOnUp] = useSound("/audio/pop-up-on.mp3", { volume: 0.5 })
 
-  const store = useStore(useWordleStore, (state) => state)
+  const store = useWordleStore((state) => state)
 
-  if (!store || !store._hasHydrated) {
-    return <Loader />
+  if (!useWordleStore.persist.hasHydrated()) {
+    return <span>cargando...</span>
   }
 
   return (

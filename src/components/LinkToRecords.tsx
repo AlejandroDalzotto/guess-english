@@ -22,9 +22,8 @@ export default function LinkToRecords({
 
     if (typeof window !== "undefined" && window.localStorage) {
 
-      const guessStorage = JSON.parse(window.localStorage.getItem(history.store) ?? "{\"verbs\":[]}") as { verbs: string[] }
-
-      if (guessStorage.verbs.length) {
+      const storage = JSON.parse(window.localStorage.getItem(history.store) ?? "{}")
+      if (Object.keys(storage).length) {
         setHasStoredData(true)
       }
     }

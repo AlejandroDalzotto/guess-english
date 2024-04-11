@@ -2,15 +2,14 @@
 
 import { generateUUID } from "@/lib/utils"
 import { useWordleStore } from "@/stores/wordle-store";
-import { useStore } from "zustand";
 import Loader from "./Loader";
 import clsx from "clsx";
 
 export default function WordleTable() {
 
-  const store = useStore(useWordleStore, (state) => state)
+  const store = useWordleStore((state) => state)
 
-  if (!store || !store._hasHydrated) {
+  if (!useWordleStore.persist.hasHydrated()) {
     return <Loader />
   }
 

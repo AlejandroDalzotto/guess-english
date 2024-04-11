@@ -1,4 +1,4 @@
-import type { Word } from '@/lib/types';
+import { Word } from '@/lib/types';
 import { getRandomWord } from '@/lib/utils';
 import { create } from 'zustand'
 import { createJSONStorage, persist } from 'zustand/middleware';
@@ -12,7 +12,6 @@ type State = {
   currentWord: Word,
   currentRow: number;
   currentCol: number;
-  _hasHydrated: boolean;
   board: Array<Word>;
 }
 
@@ -22,11 +21,14 @@ type Actions = {
   onTyping: (letter: string) => void;
   onBackspace: () => void;
   reset: () => void;
-  setHasHydrated: (state: boolean) => void;
 }
 
 // initial values
-const word = getRandomWord([])
+const currentStorage = JSON.parse(window.localStorage.getItem("w__s") ?? "{\"words\":[]}") as { words: string[] }
+
+const word = getRandomWord(
+  currentStorage.words.length ? currentStorage.words : []
+)
 
 const initialState: Omit<State, "_hasHydrated"> = {
   points: 0,
@@ -44,21 +46,14 @@ export const useWordleStore = create<State & Actions>()(
   persist(
     (set, get) => ({
       ...initialState,
-      _hasHydrated: false,
-      setHasHydrated: (state: boolean) => {
-        set({
-          _hasHydrated: state
-        });
-      },
       onDefeat: (compareWord: Word) => {
 
         // Last row to guess the word.
-        if (get().currentRow === 6) {
+        if (get().currentRow + 1 === 6) {
 
           set((state) => ({
             points: state.points - 10,
             streak: state.streak >= 1 ? state.streak - 1 : 0,
-            board: Array.from({ length: 6 }, () => Array.from({ length: 5 }, () => ({ value: " ", color: "neutral" }))),
             gameState: "idle",
           }))
 
@@ -90,6 +85,8 @@ export const useWordleStore = create<State & Actions>()(
         if (!wordleStorage.words.includes(wordGuessed)) {
           wordleStorage.words.push(wordGuessed)
         }
+
+        localStorage.setItem("w__s", JSON.stringify(wordleStorage))
 
         set((state) => ({
           // Print the word result.
@@ -134,14 +131,20 @@ export const useWordleStore = create<State & Actions>()(
         }))
 
       },
-      reset: () => set(() => ({ ...initialState })),
+      reset: () => {
+
+        const { word, ...newState } = initialState
+
+        set((state) => ({
+          ...newState,
+          word: getRandomWord(currentStorage.words)
+        }))
+
+      }
     }),
     {
       name: "wordle-store",
       storage: createJSONStorage(() => sessionStorage),
-      onRehydrateStorage: () => (state) => {
-        state?.setHasHydrated(true)
-      },
     }
   )
 )

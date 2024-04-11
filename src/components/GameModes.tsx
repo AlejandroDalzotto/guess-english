@@ -31,7 +31,7 @@ const modes: GameMode[] = [
   {
     uuid: randomUUID(),
     name: "wordle",
-    shortDescription: "Get 6 chances to guess a word.",
+    shortDescription: "Get 6 chances to guess a 5-letters word.",
     href: "/wordle",
     history: {
       store: "w__s",

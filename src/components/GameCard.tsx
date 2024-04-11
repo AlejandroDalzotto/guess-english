@@ -3,7 +3,6 @@
 import type { GameMode } from "@/lib/types";
 import clsx from "clsx";
 import Link from "next/link";
-import { redirect } from "next/navigation";
 import useSound from "use-sound";
 
 interface Props {

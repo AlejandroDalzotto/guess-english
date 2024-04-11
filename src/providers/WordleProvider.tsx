@@ -1,9 +1,8 @@
 "use client";
 
-import useStore from "@/hooks/use-store";
 import { compareWords, isValidKey } from "@/lib/utils";
 import { useWordleStore } from "@/stores/wordle-store";
-import { type KeyboardEvent } from "react"
+import { useEffect, type KeyboardEvent } from "react"
 
 interface Props {
   children: React.ReactNode
@@ -11,40 +10,42 @@ interface Props {
 
 export default function WordleProvider({ children }: Props) {
 
-  const store = useStore(useWordleStore, (state) => state)
+  useEffect(() => {
+    useWordleStore.persist.rehydrate();
+  }, [])
+
+  const store = useWordleStore((state) => state)
 
   const handleKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
     e.preventDefault()
 
-    if (store) {
-      if (store._hasHydrated && store.gameState === "playing") {
+    if (store.gameState === "playing") {
 
-        if (e.key === "Enter" && store.board[store.currentRow].every(v => v.value !== " ")) {
+      if (e.key === "Enter" && store.board[store.currentRow].every(v => v.value !== " ")) {
 
-          const comparedWord = compareWords(store.word, store.currentWord)
+        const comparedWord = compareWords(store.word, store.currentWord)
 
-          // If the typed word is equals to the secret word then user win
-          if (comparedWord.every(letter => letter.color === "green")) {
-            store.onVictory(comparedWord)
-          } else {
-            // If not, user lose
-            store.onDefeat(comparedWord)
-          }
-
-          return;
+        // If the typed word is equals to the secret word then user win
+        if (comparedWord.every(letter => letter.color === "green")) {
+          store.onVictory(comparedWord)
+        } else {
+          // If not, user lose
+          store.onDefeat(comparedWord)
         }
 
-        // Validate if backspace is pressed
-        if (e.key === "Backspace") {
-          store.onBackspace();
-          return;
-        }
+        return;
+      }
 
-        // If key pressed is neither Enter or Backspace, fill the current column with the value
-        if (isValidKey(e.key) && store.currentWord[4].value === " ") {
-          store.onTyping(e.key);
-          return;
-        }
+      // Validate if backspace is pressed
+      if (e.key === "Backspace") {
+        store.onBackspace();
+        return;
+      }
+
+      // If key pressed is neither Enter or Backspace, fill the current column with the value
+      if (isValidKey(e.key) && store.currentWord[4].value === " ") {
+        store.onTyping(e.key);
+        return;
       }
     }
   }
