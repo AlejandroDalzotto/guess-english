@@ -1,5 +1,5 @@
 import type { Word } from '@/lib/types';
-// import { getRandomWord } from '@/lib/utils';
+import { compareWords, getRandomWord } from '@/lib/utils';
 import { create } from 'zustand'
 import { createJSONStorage, persist } from 'zustand/middleware';
 
@@ -7,7 +7,7 @@ type State = {
   points: number;
   streak: number;
   records: string[];
-  word: Word | null;
+  word: Word;
   currentWord: Word,
   currentRow: number;
   currentCol: number;
@@ -25,29 +25,7 @@ type Actions = {
 }
 
 // initial values
-// const word = getRandomWord([])
-const word: Word = [
-  {
-    value: "b",
-    color: "neutral"
-  },
-  {
-    value: "r",
-    color: "neutral"
-  },
-  {
-    value: "e",
-    color: "neutral"
-  },
-  {
-    value: "a",
-    color: "neutral"
-  },
-  {
-    value: "d",
-    color: "neutral"
-  }
-]
+const word = getRandomWord([])
 
 const initialState: Omit<State, "_hasHydrated"> = {
   points: 0,
@@ -78,10 +56,15 @@ export const useWordleStore = create<State & Actions>()(
           set((state) => ({
             points: state.points - 10,
             streak: state.streak >= 1 ? state.streak - 1 : 0,
+            board: Array.from({ length: 6 }, () => Array.from({ length: 5 }, () => ({ value: " ", color: "neutral" }))),
+            currentCol: 0,
+            currentRow: 0,
           }))
 
           return;
         }
+
+        const wordCompared = compareWords(get().word, get().currentWord)
 
         // Render the board with the new letter typed.
         set((state) => ({
@@ -93,11 +76,13 @@ export const useWordleStore = create<State & Actions>()(
           currentWord: Array.from({ length: 5 }, () => ({ value: " ", color: "neutral" })),
           // Lose one point per word failed.
           points: state.points - 1,
+
+          board: state.board.map((row, rowIndex) => rowIndex === state.currentRow ? wordCompared : row)
         }))
 
       },
       onVictory: () => {
-
+        console.log("VICTORY")
       },
       onTyping: (letter: string) => {
 

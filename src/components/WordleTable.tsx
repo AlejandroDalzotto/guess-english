@@ -15,14 +15,14 @@ export default function WordleTable() {
   }
 
   return (
-    <article className="h-fit flex flex-col gap-y-2 justify-center items-center">
+    <article className="h-fit flex flex-col gap-y-1 justify-center items-center">
 
       {
         store.board.map((row, rowIndex) => {
 
           return (
 
-            <div className="flex gap-x-2" key={generateUUID()}>
+            <div className="flex gap-x-1" key={generateUUID()}>
 
               {
                 row.map((letter, colIndex) => {
@@ -30,7 +30,7 @@ export default function WordleTable() {
                   return (
                     <div
                       className={clsx(
-                        "border-2 transition-all rounded-lg w-14 text-2xl font-bold capitalize aspect-square grid place-content-center",
+                        "border-2 transition-all rounded-lg w-16 text-2xl font-bold capitalize aspect-square grid place-content-center",
                         { "border-blue-400": store.currentCol === colIndex && store.currentRow === rowIndex },
                         { "border-neutral-700": store.currentCol !== colIndex || store.currentRow !== rowIndex },
                         { "bg-neutral-900": letter.color === "neutral" },

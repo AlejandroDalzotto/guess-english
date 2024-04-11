@@ -1,7 +1,7 @@
 "use client";
 
 import useStore from "@/hooks/use-store";
-import { isValidKey } from "@/lib/utils";
+import { compareWords, isValidKey } from "@/lib/utils";
 import { useWordleStore } from "@/stores/wordle-store";
 import { type KeyboardEvent } from "react"
 
@@ -22,7 +22,7 @@ export default function WordleProvider({ children }: Props) {
         if (e.key === "Enter" && store.board[store.currentRow].every(v => v.value !== " ")) {
 
           // If the typed word is equals to the secret word then user win
-          if (store.board[store.currentRow] === store.word) {
+          if (store.board[store.currentRow] === store.currentWord) {
             store.onVictory()
           } else {
             // If not, user lose
@@ -39,7 +39,7 @@ export default function WordleProvider({ children }: Props) {
         }
 
         // If key pressed is neither Enter or Backspace, fill the current column with the value
-        if (isValidKey(e.key)) {
+        if (isValidKey(e.key) && store.currentWord[4].value === " ") {
           store.onTyping(e.key);
           return;
         }

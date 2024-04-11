@@ -1,6 +1,5 @@
-import { translatedVerbs, verbs } from "@/lib/data";
-import type { Verb, Word } from "./types";
-// import { readFileSync } from 'node:fs';
+import { translatedVerbs, verbs, words } from "@/lib/data";
+import type { Letter, Verb, Word } from "./types";
 
 export const generateOptions = (mainVerb: string | undefined): string[] => {
 
@@ -108,26 +107,50 @@ export const isValidKey = (key: string): boolean => {
   return validKeys.includes(key);
 }
 
-// export const getRandomWord = (currentWordsHistory: Word[]): Word => {
+export const compareWords = (wordSecret: Word, inputUser: Word): Word => {
+  const result: Word = [];
+  const unmatched: string[] = []
 
-//   const file = readFileSync(process.cwd() + '/src/lib/data/wordle.json', 'utf8');
-//   const data: { words: string[] } = JSON.parse(file)
+  // Mark correct letters in correct positions
+  for (let i = 0; i < wordSecret.length; i++) {
+    if (inputUser[i] && inputUser[i].value === wordSecret[i].value) {
+      result.push({ value: inputUser[i].value, color: "green" });
+    } else {
+      result.push({ value: inputUser[i].value, color: "gray" })
+      unmatched.push(wordSecret[i].value)
+    }
+  }
 
-//   let word: Word | undefined;
+  for (let i = 0; i < wordSecret.length; i++) {
 
-//   while (!word) {
+    if (result[i].color === "gray" && unmatched.includes(inputUser[i].value)) {
+      result[i].color = "yellow"
 
-//     const randIndex = Math.floor(Math.random() * data.words.length);
-//     const rawWord = data.words[randIndex]
+      const indexToDelete = unmatched.findIndex((letter) => letter === result[i].value)
 
-//     const word: Word = [
-//       rawWord[0],
-//       rawWord[1],
-//       rawWord[2],
-//       rawWord[3],
-//       rawWord[4],
-//     ]
-//   }
+      unmatched.splice(indexToDelete, 1)
+    }
 
-//   return word;
-// }
+  }
+
+  return result;
+};
+
+export const getRandomWord = (records: string[]): Word => {
+
+  const word: Word = [];
+
+  while (word.length === 0) {
+
+    const randIndex = Math.floor(Math.random() * words.length);
+    const rawWord = words[randIndex]
+
+    if (!records.includes(rawWord)) {
+      const letters: Letter[] = rawWord.split("").map((letter) => ({ value: letter, color: "neutral" }))
+      word.push(...letters)
+    }
+
+  }
+
+  return word;
+}
