@@ -1,10 +1,11 @@
 import type { Word } from '@/lib/types';
-import { compareWords, getRandomWord } from '@/lib/utils';
+import { getRandomWord } from '@/lib/utils';
 import { create } from 'zustand'
 import { createJSONStorage, persist } from 'zustand/middleware';
 
 type State = {
   points: number;
+  gameState: "playing" | "idle";
   streak: number;
   records: string[];
   word: Word;
@@ -16,8 +17,8 @@ type State = {
 }
 
 type Actions = {
-  onVictory: () => void;
-  onDefeat: () => void;
+  onVictory: (compareWord: Word) => void;
+  onDefeat: (compareWord: Word) => void;
   onTyping: (letter: string) => void;
   onBackspace: () => void;
   reset: () => void;
@@ -29,6 +30,7 @@ const word = getRandomWord([])
 
 const initialState: Omit<State, "_hasHydrated"> = {
   points: 0,
+  gameState: "playing",
   streak: 0,
   records: [],
   word,
@@ -48,7 +50,7 @@ export const useWordleStore = create<State & Actions>()(
           _hasHydrated: state
         });
       },
-      onDefeat: () => {
+      onDefeat: (compareWord: Word) => {
 
         // Last row to guess the word.
         if (get().currentRow === 6) {
@@ -57,14 +59,11 @@ export const useWordleStore = create<State & Actions>()(
             points: state.points - 10,
             streak: state.streak >= 1 ? state.streak - 1 : 0,
             board: Array.from({ length: 6 }, () => Array.from({ length: 5 }, () => ({ value: " ", color: "neutral" }))),
-            currentCol: 0,
-            currentRow: 0,
+            gameState: "idle",
           }))
 
           return;
         }
-
-        const wordCompared = compareWords(get().word, get().currentWord)
 
         // Render the board with the new letter typed.
         set((state) => ({
@@ -77,12 +76,33 @@ export const useWordleStore = create<State & Actions>()(
           // Lose one point per word failed.
           points: state.points - 1,
 
-          board: state.board.map((row, rowIndex) => rowIndex === state.currentRow ? wordCompared : row)
+          // Re-render board.
+          board: state.board.map((row, rowIndex) => rowIndex === state.currentRow ? compareWord : row)
         }))
 
       },
-      onVictory: () => {
-        console.log("VICTORY")
+      onVictory: (compareWord: Word) => {
+
+        const wordGuessed = compareWord.map(letter => letter.value).join("")
+
+        const wordleStorage = JSON.parse(localStorage.getItem("w__s") ?? "{\"words\":[]}") as { words: string[] }
+
+        if (!wordleStorage.words.includes(wordGuessed)) {
+          wordleStorage.words.push(wordGuessed)
+        }
+
+        set((state) => ({
+          // Print the word result.
+          currentWord: compareWord,
+          // Lose one point per word failed.
+          points: state.points + 10,
+          // Re-render board.
+          board: state.board.map((row, rowIndex) => rowIndex === state.currentRow ? compareWord : row),
+          gameState: "idle",
+          // Save the word guessed in the records.
+          records: [...state.records, wordGuessed]
+        }))
+
       },
       onTyping: (letter: string) => {
 

@@ -17,16 +17,18 @@ export default function WordleProvider({ children }: Props) {
     e.preventDefault()
 
     if (store) {
-      if (store._hasHydrated) {
+      if (store._hasHydrated && store.gameState === "playing") {
 
         if (e.key === "Enter" && store.board[store.currentRow].every(v => v.value !== " ")) {
 
+          const comparedWord = compareWords(store.word, store.currentWord)
+
           // If the typed word is equals to the secret word then user win
-          if (store.board[store.currentRow] === store.currentWord) {
-            store.onVictory()
+          if (comparedWord.every(letter => letter.color === "green")) {
+            store.onVictory(comparedWord)
           } else {
             // If not, user lose
-            store.onDefeat()
+            store.onDefeat(comparedWord)
           }
 
           return;
