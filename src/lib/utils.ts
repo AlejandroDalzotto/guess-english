@@ -1,5 +1,6 @@
 import { translatedVerbs, verbs } from "@/lib/data";
-import type { Verb } from "./types";
+import type { Verb, Word } from "./types";
+// import { readFileSync } from 'node:fs';
 
 export const generateOptions = (mainVerb: string | undefined): string[] => {
 
@@ -72,3 +73,61 @@ export const generateUUID = (): string => {
     return v.toString(16);
   });
 }
+
+export const isValidKey = (key: string): boolean => {
+
+  const validKeys = [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h",
+    "i",
+    "j",
+    "k",
+    "l",
+    "m",
+    "n",
+    "o",
+    "p",
+    "q",
+    "r",
+    "s",
+    "t",
+    "v",
+    "u",
+    "w",
+    "x",
+    "y",
+    "z",
+  ];
+
+  return validKeys.includes(key);
+}
+
+// export const getRandomWord = (currentWordsHistory: Word[]): Word => {
+
+//   const file = readFileSync(process.cwd() + '/src/lib/data/wordle.json', 'utf8');
+//   const data: { words: string[] } = JSON.parse(file)
+
+//   let word: Word | undefined;
+
+//   while (!word) {
+
+//     const randIndex = Math.floor(Math.random() * data.words.length);
+//     const rawWord = data.words[randIndex]
+
+//     const word: Word = [
+//       rawWord[0],
+//       rawWord[1],
+//       rawWord[2],
+//       rawWord[3],
+//       rawWord[4],
+//     ]
+//   }
+
+//   return word;
+// }

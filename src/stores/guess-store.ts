@@ -1,6 +1,6 @@
 import { verbs } from '@/lib/data';
 import type { Verb } from '@/lib/types';
-import { calculatePoints, generateOptions, getRandomVerb } from '@/lib/utils';
+import { generateOptions, getRandomVerb } from '@/lib/utils';
 import { create } from 'zustand'
 import { createJSONStorage, persist } from 'zustand/middleware';
 
