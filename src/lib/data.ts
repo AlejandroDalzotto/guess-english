@@ -257,8 +257,8 @@ export const verbs: Verb[] = [
   {
     value: "afford",
     translations: [
-      "ofrecerse",
-      "permitirse el lujo"
+      "poder pagar",
+      "permitirse",
     ],
     examplePhrases: [
       "I can't afford to buy a new car right now; I'll have to save up for it.",

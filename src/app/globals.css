@@ -5,3 +5,17 @@
 :root {
   color-scheme: light dark;
 }
+
+@keyframes fade-middle-opacity {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: .5;
+  }
+}
+
+.animate-fade-middle-opacity {
+  animation: fade-middle-opacity 1s both;
+}
