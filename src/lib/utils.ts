@@ -107,18 +107,3 @@ export const compareWords = (wordSecret: Word, inputUser: Word): Word => {
 
   return result;
 };
-
-export const getRandomWord = (records: string[]): Word => {
-
-  const availableWords = words.filter(value => !records.includes(value))
-
-  if (!availableWords.length) {
-    throw new Error("There are no words left, sorry :(")
-  }
-
-  const randIndex = Math.floor(Math.random() * availableWords.length);
-  const rawWord = availableWords[randIndex]
-  const word: Letter[] = rawWord.split("").map((letter) => ({ value: letter, color: "neutral" }))
-
-  return word;
-}

@@ -71,7 +71,7 @@ export const useWordleStore = create<State & Actions>()(
 
         const wordGuessed = compareWord.map(letter => letter.value).join("")
 
-        const wordleStorage = JSON.parse(localStorage.getItem("w__s") ?? "{\"words\":[]}") as { words: string[] }
+        const wordleStorage = JSON.parse(localStorage.getItem("w__s") ?? '{"words":[]}') as { words: string[] }
 
         if (!wordleStorage.words.includes(wordGuessed)) {
           wordleStorage.words.push(wordGuessed)

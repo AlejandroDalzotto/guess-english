@@ -1,5 +1,6 @@
 "use client";
 
+import { isValidWord } from "@/lib/actions";
 import { compareWords, isValidKey } from "@/lib/utils";
 import { useWordleStore } from "@/stores/wordle-store";
 import { useEffect, type KeyboardEvent } from "react"
@@ -14,29 +15,50 @@ export default function WordleProvider({ children }: Props) {
     useWordleStore.persist.rehydrate();
   }, [])
 
+  // Store actions.
   const init = useWordleStore((state) => state.init)
-  const store = useWordleStore((state) => state)
+  const onBackspace = useWordleStore((state) => state.onBackspace)
+  const onDefeat = useWordleStore((state) => state.onDefeat)
+  const onVictory = useWordleStore((state) => state.onVictory)
+  const onTyping = useWordleStore((state) => state.onTyping)
 
+  // Store states.
+  const gameState = useWordleStore((state) => state.gameState)
+  const guess = useWordleStore((state) => state.guess)
+  const currentWord = useWordleStore((state) => state.currentWord)
+  const currentRow = useWordleStore((state) => state.currentRow)
+  const board = useWordleStore((state) => state.board)
+
+  // Init not the store but actually the word to guess.
   useEffect(() => {
     init()
   }, [init])
 
 
-  const handleKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
+  const handleKeyDown = async (e: KeyboardEvent<HTMLDivElement>) => {
     e.preventDefault()
 
-    if (store.gameState === "playing" && store.guess) {
+    if (gameState === "playing" && guess) {
 
-      if (e.key === "Enter" && store.board[store.currentRow].every(v => v.value !== " ")) {
+      if (e.key === "Enter" && board[currentRow].every(v => v.value !== " ")) {
 
-        const comparedWord = compareWords(store.guess, store.currentWord)
+        // Validate if the word is in the json's word.
+        const parsedWord = currentWord.map(letter => letter.value).join("")
+        const isValid = await isValidWord(parsedWord)
+
+        if (!isValid) {
+          console.log("PALABRA NO VALIDA")
+          return;
+        }
+
+        const comparedWord = compareWords(guess, currentWord)
 
         // If the typed word is equals to the secret word then user win
         if (comparedWord.every(letter => letter.color === "green")) {
-          store.onVictory(comparedWord)
+          onVictory(comparedWord)
         } else {
           // If not, user lose
-          store.onDefeat(comparedWord)
+          onDefeat(comparedWord)
         }
 
         return;
@@ -44,20 +66,20 @@ export default function WordleProvider({ children }: Props) {
 
       // Validate if backspace is pressed
       if (e.key === "Backspace") {
-        store.onBackspace();
+        onBackspace();
         return;
       }
 
       // If key pressed is neither Enter or Backspace, fill the current column with the value
-      if (isValidKey(e.key) && store.currentWord[4].value === " ") {
-        store.onTyping(e.key);
+      if (isValidKey(e.key) && currentWord[4].value === " ") {
+        onTyping(e.key);
         return;
       }
     }
   }
 
   return (
-    <div className="outline-none" autoFocus tabIndex={-1} onKeyDown={handleKeyDown}>
+    <div tabIndex={-1} onKeyDown={handleKeyDown}>
       {children}
     </div>
   )
