@@ -9,23 +9,20 @@ export default function ResetWordleButtom() {
   const [playOnDown] = useSound("/audio/pop-down.mp3", { volume: 0.5 })
   const [playOnUp] = useSound("/audio/pop-up-on.mp3", { volume: 0.5 })
 
-  const store = useWordleStore((state) => state)
-
-  if (!useWordleStore.persist.hasHydrated()) {
-    return <span>cargando...</span>
-  }
+  const reset = useWordleStore((state) => state.reset)
+  const gameState = useWordleStore((state) => state.gameState)
 
   return (
     <button
       onMouseDown={() => playOnDown()}
       onMouseUp={() => {
         playOnUp()
-        store.reset()
+        reset()
       }}
       className={clsx(
         "relative grid place-content-center border border-neutral-700 px-6 py-3 transition-all rounded-lg",
-        { "pointer-events-none opacity-80": store.gameState === "playing" },
-        { "active:scale-90 hover:bg-black/5 dark:hover:bg-white/5 hover:scale-105": store.gameState === "idle" }
+        { "pointer-events-none opacity-80": gameState === "playing" },
+        { "active:scale-90 hover:bg-black/5 dark:hover:bg-white/5 hover:scale-105": gameState === "idle" }
       )}>
       reset game
     </button>

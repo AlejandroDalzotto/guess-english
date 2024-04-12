@@ -1,14 +1,13 @@
+import { getWord } from '@/lib/actions';
 import { Word } from '@/lib/types';
-import { getRandomWord } from '@/lib/utils';
 import { create } from 'zustand'
 import { createJSONStorage, persist } from 'zustand/middleware';
 
 type State = {
   points: number;
   gameState: "playing" | "idle";
-  streak: number;
   records: string[];
-  word: Word;
+  guess: Word | null;
   currentWord: Word,
   currentRow: number;
   currentCol: number;
@@ -21,21 +20,14 @@ type Actions = {
   onTyping: (letter: string) => void;
   onBackspace: () => void;
   reset: () => void;
+  init: () => void;
 }
 
-// initial values
-const currentStorage = JSON.parse(window.localStorage.getItem("w__s") ?? "{\"words\":[]}") as { words: string[] }
-
-const word = getRandomWord(
-  currentStorage.words.length ? currentStorage.words : []
-)
-
-const initialState: Omit<State, "_hasHydrated"> = {
+const initialState: State = {
   points: 0,
   gameState: "playing",
-  streak: 0,
   records: [],
-  word,
+  guess: null,
   currentWord: Array.from({ length: 5 }, () => ({ value: " ", color: "neutral" })),
   currentRow: 0,
   currentCol: 0,
@@ -53,7 +45,6 @@ export const useWordleStore = create<State & Actions>()(
 
           set((state) => ({
             points: state.points - 10,
-            streak: state.streak >= 1 ? state.streak - 1 : 0,
             gameState: "idle",
           }))
 
@@ -131,15 +122,23 @@ export const useWordleStore = create<State & Actions>()(
         }))
 
       },
-      reset: () => {
+      reset: async () => {
+        const word = await getWord()
 
-        const { word, ...newState } = initialState
+        const { guess, ...newState } = initialState
 
-        set((state) => ({
+        set(() => ({
           ...newState,
-          word: getRandomWord(currentStorage.words)
+          guess: word
         }))
 
+      },
+      init: async () => {
+        const word = await getWord()
+
+        set(() => ({
+          guess: word,
+        }))
       }
     }),
     {

@@ -7,17 +7,15 @@ import clsx from "clsx";
 
 export default function WordleTable() {
 
-  const store = useWordleStore((state) => state)
-
-  if (!useWordleStore.persist.hasHydrated()) {
-    return <Loader />
-  }
+  const board = useWordleStore((state) => state.board)
+  const currentCol = useWordleStore((state) => state.currentCol)
+  const currentRow = useWordleStore((state) => state.currentRow)
 
   return (
     <article className="h-fit flex flex-col gap-y-1 justify-center items-center">
 
       {
-        store.board.map((row, rowIndex) => {
+        board.map((row, rowIndex) => {
 
           return (
 
@@ -30,8 +28,8 @@ export default function WordleTable() {
                     <div
                       className={clsx(
                         "border-2 transition-all rounded-lg w-16 text-2xl font-bold capitalize aspect-square grid place-content-center",
-                        { "border-blue-400": store.currentCol === colIndex && store.currentRow === rowIndex },
-                        { "border-neutral-700": store.currentCol !== colIndex || store.currentRow !== rowIndex },
+                        { "border-blue-400": currentCol === colIndex && currentRow === rowIndex },
+                        { "border-neutral-700": currentCol !== colIndex || currentRow !== rowIndex },
                         { "bg-neutral-900": letter.color === "neutral" },
                         { "bg-yellow-500": letter.color === "yellow" },
                         { "bg-green-500": letter.color === "green" },

@@ -14,16 +14,22 @@ export default function WordleProvider({ children }: Props) {
     useWordleStore.persist.rehydrate();
   }, [])
 
+  const init = useWordleStore((state) => state.init)
   const store = useWordleStore((state) => state)
+
+  useEffect(() => {
+    init()
+  }, [init])
+
 
   const handleKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
     e.preventDefault()
 
-    if (store.gameState === "playing") {
+    if (store.gameState === "playing" && store.guess) {
 
       if (e.key === "Enter" && store.board[store.currentRow].every(v => v.value !== " ")) {
 
-        const comparedWord = compareWords(store.word, store.currentWord)
+        const comparedWord = compareWords(store.guess, store.currentWord)
 
         // If the typed word is equals to the secret word then user win
         if (comparedWord.every(letter => letter.color === "green")) {
@@ -51,7 +57,7 @@ export default function WordleProvider({ children }: Props) {
   }
 
   return (
-    <div className="outline-none" autoFocus tabIndex={-1} onKeyDown={(e) => handleKeyDown(e)}>
+    <div className="outline-none" autoFocus tabIndex={-1} onKeyDown={handleKeyDown}>
       {children}
     </div>
   )

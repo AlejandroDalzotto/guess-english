@@ -74,37 +74,9 @@ export const generateUUID = (): string => {
 }
 
 export const isValidKey = (key: string): boolean => {
+  const regexp = new RegExp(/^[A-z]$/)
 
-  const validKeys = [
-    "a",
-    "b",
-    "c",
-    "d",
-    "e",
-    "f",
-    "g",
-    "h",
-    "i",
-    "j",
-    "k",
-    "l",
-    "m",
-    "n",
-    "o",
-    "p",
-    "q",
-    "r",
-    "s",
-    "t",
-    "v",
-    "u",
-    "w",
-    "x",
-    "y",
-    "z",
-  ];
-
-  return validKeys.includes(key);
+  return regexp.test(key);
 }
 
 export const compareWords = (wordSecret: Word, inputUser: Word): Word => {
