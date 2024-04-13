@@ -2,10 +2,9 @@
 
 import { generateUUID } from "@/lib/utils"
 import { useWordleStore } from "@/stores/wordle-store";
-import Loader from "./Loader";
 import clsx from "clsx";
 
-export default function WordleTable() {
+export default function Board() {
 
   const board = useWordleStore((state) => state.board)
   const currentCol = useWordleStore((state) => state.currentCol)
@@ -30,7 +29,7 @@ export default function WordleTable() {
                         "border-2 transition-all rounded-lg w-16 text-2xl font-bold capitalize aspect-square grid place-content-center",
                         { "border-blue-400": currentCol === colIndex && currentRow === rowIndex },
                         { "border-neutral-700": currentCol !== colIndex || currentRow !== rowIndex },
-                        { "bg-neutral-900": letter.color === "neutral" },
+                        { "bg-neutral-800": letter.color === "neutral" },
                         { "bg-yellow-500": letter.color === "yellow" },
                         { "bg-green-500": letter.color === "green" },
                         { "bg-neutral-950": letter.color === "gray" },

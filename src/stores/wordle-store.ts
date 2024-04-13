@@ -1,5 +1,6 @@
 import { getWord } from '@/lib/actions';
-import { Word } from '@/lib/types';
+import { Letter, Word } from '@/lib/types';
+import { generateQwerty, updateKeyboard } from '@/lib/utils';
 import { create } from 'zustand'
 import { createJSONStorage, persist } from 'zustand/middleware';
 
@@ -12,6 +13,7 @@ type State = {
   currentRow: number;
   currentCol: number;
   board: Array<Word>;
+  qwerty: Letter[][];
 }
 
 type Actions = {
@@ -19,12 +21,14 @@ type Actions = {
   onDefeat: (compareWord: Word) => void;
   onTyping: (letter: string) => void;
   onBackspace: () => void;
+  updateQwerty: (word: Word) => void;
   reset: () => void;
   init: () => void;
 }
 
 const initialState: State = {
   points: 0,
+  qwerty: generateQwerty(),
   gameState: "playing",
   records: [],
   guess: null,
@@ -138,6 +142,12 @@ export const useWordleStore = create<State & Actions>()(
 
         set(() => ({
           guess: word,
+        }))
+      },
+      updateQwerty: (word: Word) => {
+        const updatedKeyboard = updateKeyboard(word, get().qwerty)
+        set(() => ({
+          qwerty: updatedKeyboard
         }))
       }
     }),

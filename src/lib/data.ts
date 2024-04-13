@@ -185,18 +185,6 @@ export const translatedVerbs = [
   "escribir",
 ]
 
-export const words = [
-  "bread",
-  "right",
-  "group",
-  "beach",
-  "green",
-  "stone",
-  "merge",
-  "hello",
-  "world"
-]
-
 export const verbs: Verb[] = [
   {
     value: "accept",

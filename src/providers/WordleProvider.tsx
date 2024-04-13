@@ -21,6 +21,7 @@ export default function WordleProvider({ children }: Props) {
   const onDefeat = useWordleStore((state) => state.onDefeat)
   const onVictory = useWordleStore((state) => state.onVictory)
   const onTyping = useWordleStore((state) => state.onTyping)
+  const updateQwerty = useWordleStore((state) => state.updateQwerty)
 
   // Store states.
   const gameState = useWordleStore((state) => state.gameState)
@@ -52,6 +53,7 @@ export default function WordleProvider({ children }: Props) {
         }
 
         const comparedWord = compareWords(guess, currentWord)
+        updateQwerty(comparedWord)
 
         // If the typed word is equals to the secret word then user win
         if (comparedWord.every(letter => letter.color === "green")) {

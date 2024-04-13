@@ -1,4 +1,4 @@
-import { translatedVerbs, verbs, words } from "@/lib/data";
+import { translatedVerbs, verbs } from "@/lib/data";
 import type { Letter, Verb, Word } from "./types";
 
 export const generateOptions = (mainVerb: string | undefined): string[] => {
@@ -107,3 +107,33 @@ export const compareWords = (wordSecret: Word, inputUser: Word): Word => {
 
   return result;
 };
+
+export const generateQwerty = (): Letter[][] => {
+
+  const firstRow: Letter[] = "qwertyuiop".split("").map(letter => ({ value: letter, color: "neutral" }))
+  const secondRow: Letter[] = "asdfghjkl".split("").map(letter => ({ value: letter, color: "neutral" }))
+  const thirdRow: Letter[] = "zxcvbnm".split("").map(letter => ({ value: letter, color: "neutral" }))
+
+  return [
+    firstRow,
+    secondRow,
+    thirdRow,
+  ]
+}
+
+export const updateKeyboard = (word: Word, keyboard: Letter[][]): Letter[][] => {
+  const updatedKeyboard: Letter[][] = keyboard.map(row =>
+    row.map(key => {
+
+      const isKeyInWord = word.find(letter => letter.value === key.value)
+
+      if (isKeyInWord) {
+        return isKeyInWord
+      }
+
+      return key
+
+    })
+  );
+  return updatedKeyboard;
+}
