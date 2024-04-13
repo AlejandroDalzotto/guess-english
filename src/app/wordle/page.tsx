@@ -10,11 +10,9 @@ export default function WordlePage() {
     <>
       <Smoke2 />
       <WordleProvider>
-        <main className="px-6 container mx-auto grid grid-rows-10 max-h-screen min-h-screen">
-          <header className="row-span-2 flex flex-col gap-y-8 items-center justify-center">
-            <div className="w-full grid grid-cols-3">
-              <GoBackButton backTo="home" label="Back to home" />
-            </div>
+        <main className="px-3 container mx-auto flex flex-col items-center max-h-screen min-h-screen">
+          <header className="flex flex-col gap-y-8 my-8 items-center justify-center">
+            <GoBackButton backTo="home" label="Back to home" />
             <Title>
               ¡Wordle!
             </Title>

@@ -13,18 +13,19 @@ export default function ResetWordleButtom() {
   const gameState = useWordleStore((state) => state.gameState)
 
   return (
-    <button
-      onMouseDown={() => playOnDown()}
-      onMouseUp={() => {
-        playOnUp()
-        reset()
-      }}
-      className={clsx(
-        "relative grid place-content-center border border-neutral-700 px-6 py-3 transition-all rounded-lg",
-        { "pointer-events-none opacity-80": gameState === "playing" },
-        { "active:scale-90 hover:bg-black/5 dark:hover:bg-white/5 hover:scale-105": gameState === "idle" }
-      )}>
-      reset game
-    </button>
+    gameState === "idle" ? (
+      <button
+        onMouseDown={() => playOnDown()}
+        onMouseUp={() => {
+          playOnUp()
+          reset()
+        }}
+        className={clsx(
+          "relative grid place-content-center border border-neutral-700 px-6 py-3 transition-all rounded-lg",
+          { "active:scale-90 hover:bg-black/5 dark:hover:bg-white/5 hover:scale-105": gameState === "idle" }
+        )}>
+          reset game
+      </button>
+    ) : null
   )
 }
