@@ -13,8 +13,8 @@ export default function HomePage() {
           <Title>
             ¡Guess <br className="md:hidden" /> English!
           </Title>
-          <p className="text-lg md:text-center text-balance">A simple game made for those spanish natives who wants to improve their skills in english and why not have some fun.</p>
-          <p className="text-lg">This game has two modes which are <strong>Guess the verb</strong> and <strong>Complete the phrase</strong>.</p>
+          <p className="text-lg md:text-center text-balance">A simple website made for those spanish natives who wants to improve their skills in english and why not have some fun.</p>
+          <p className="text-lg">This game has two modes which are <strong>Guess the verb</strong> and <strong>Wordle</strong>.</p>
         </header>
 
         <section className="min-h-96 my-5 grid place-content-center">
