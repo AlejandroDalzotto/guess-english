@@ -2,10 +2,10 @@
 
 import useStore from "@/hooks/use-store";
 import { useGuessStore } from "@/stores/guess-store";
-import Loader from "./Loader";
+import Loader from "@/components/Loader";
 import useSound from "use-sound";
 import { verbs } from "@/lib/data";
-import TotalProgress from "./TotalProgress";
+import TotalProgress from "@/components/guess-the-verb/TotalProgress";
 
 export default function GuessTheVerbMode() {
 

@@ -1,5 +1,5 @@
 import GoBackButton from "@/components/GoBackButton";
-import GuessTheVerbMode from "@/components/GuessTheVerbMode";
+import GuessTheVerbMode from "@/components/guess-the-verb/GuessTheVerbMode";
 import { Smoke3 } from "@/components/Smokes";
 import Title from "@/components/Title";
 import { type Metadata } from "next";

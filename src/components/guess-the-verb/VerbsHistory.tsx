@@ -3,7 +3,7 @@
 import { verbs } from "@/lib/data";
 import type { Verb } from "@/lib/types";
 import { useEffect, useState } from "react";
-import Phrase from "./Phrase";
+import Phrase from "@/components/guess-the-verb/Phrase";
 
 export default function VerbsHistory() {
   const [history, setHistory] = useState<Verb[]>([])

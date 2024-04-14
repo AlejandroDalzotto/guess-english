@@ -1,7 +1,7 @@
 import GoBackButton from "@/components/GoBackButton";
 import { Smoke4 } from "@/components/Smokes";
 import Title from "@/components/Title";
-import VerbsHistory from "@/components/VerbsHistory";
+import VerbsHistory from "@/components/guess-the-verb/VerbsHistory";
 import { type Metadata } from "next";
 
 export const metadata: Metadata = {

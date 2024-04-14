@@ -1,6 +1,6 @@
-import Qwerty from "./Qwerty";
-import ResetWordleButtom from "./ResetWordleButtom";
-import Board from "./Board";
+import Qwerty from "@/components/wordle/Qwerty";
+import ResetWordleButtom from "@/components/wordle/ResetWordleButtom";
+import Board from "@/components/wordle/Board";
 
 export default function WordleMode() {
 

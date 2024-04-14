@@ -3,7 +3,7 @@
 import { generateUUID } from "@/lib/utils";
 import { useWordleStore } from "@/stores/wordle-store";
 import clsx from "clsx";
-import BackspaceButton from "./BackspaceButton";
+import BackspaceButton from "@/components/wordle/BackspaceButton";
 
 export default function Qwerty() {
 
