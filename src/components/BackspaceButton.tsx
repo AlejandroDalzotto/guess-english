@@ -9,7 +9,7 @@ export default function BackspaceButton() {
   return (
     <button
       onClick={() => onBackspace()}
-      className="bg-neutral-800 select-none p-2 md:p-4 md:aspect-square text-2xl font-bold grid place-content-center rounded-md">
+      className="grid p-2 text-2xl font-bold rounded-md select-none bg-neutral-800 md:p-4 md:aspect-square place-content-center">
       <svg className="w-8 h-8 fill-white">
         <use xlinkHref="/sprites.svg#go-back"></use>
       </svg>

@@ -13,16 +13,16 @@ export default function VerbsHistoryPage() {
   return (
     <>
       <Smoke4 />
-      <main className="px-6 container mx-auto flex flex-col min-h-screen">
-        <header className="min-h-60 my-5 flex flex-col gap-y-8 items-center justify-center">
-          <div className="w-full grid grid-cols-3">
+      <main className="container flex flex-col min-h-screen px-6 mx-auto">
+        <header className="flex flex-col items-center justify-center my-5 min-h-60 gap-y-8">
+          <div className="grid w-full grid-cols-3">
             <GoBackButton backTo="home" label="Back to home" />
           </div>
           <Title>
             Verbs <br className="md:hidden" /> History
           </Title>
         </header>
-        <section className="relative min-h-96 my-5">
+        <section className="relative my-5 min-h-96">
           <VerbsHistory />
         </section>
       </main>

@@ -42,7 +42,7 @@ export default function GuessTheVerbMode() {
           <>
             <header>
 
-              <p className="text-balance text-center">¿What&apos;s the correct translation of the verb <strong className="capitalize">{store.verb?.value}</strong>?</p>
+              <p className="text-center text-balance">¿What&apos;s the correct translation of the verb <strong className="capitalize">{store.verb?.value}</strong>?</p>
 
             </header>
 
@@ -51,8 +51,8 @@ export default function GuessTheVerbMode() {
               {
                 store.options.map((option) => {
                   return (
-                    <div onClick={() => handleClick(option)} key={crypto.randomUUID()} className="p-3 bg-white/5 opacity-75 hover:opacity-100 grid place-content-center border border-neutral-700 h-full aspect-square transition-all rounded-lg dark:hover:scale-105 hover:scale-105">
-                      <p className="select-none text-xl capitalize text-balance text-center font-bold">{option}</p>
+                    <div onClick={() => handleClick(option)} key={crypto.randomUUID()} className="grid h-full p-3 transition-all border rounded-lg opacity-75 bg-white/5 hover:opacity-100 place-content-center border-neutral-700 aspect-square dark:hover:scale-105 hover:scale-105">
+                      <p className="text-xl font-bold text-center capitalize select-none text-balance">{option}</p>
                     </div>
                   )
                 })
@@ -73,22 +73,22 @@ export default function GuessTheVerbMode() {
                 playOnUp()
                 store.reset()
               }}
-              className="relative active:scale-90 hover:bg-black/5 dark:hover:bg-white/5 grid place-content-center border border-neutral-700 px-6 py-3 transition-all rounded-lg hover:scale-105">
+              className="relative grid px-6 py-3 transition-all border rounded-lg active:scale-90 hover:bg-black/5 dark:hover:bg-white/5 place-content-center border-neutral-700 hover:scale-105">
               reset game
             </button>
           </div>
         )
       }
 
-      <footer className="select-none flex justify-center gap-x-10 mt-10">
+      <footer className="flex justify-center mt-10 select-none gap-x-10">
 
         <div className="flex flex-col items-center gap-y-3">
           <p className="text-lg text-center">Your current <br /> <strong>points</strong></p>
-          <span className="font-black text-5xl">{store.points}</span>
+          <span className="text-5xl font-black">{store.points}</span>
         </div>
         <div className="flex flex-col items-center gap-y-3">
           <p className="text-lg text-center">Your current <br /> <strong>streak</strong></p>
-          <span className="font-black text-5xl">{store.streak}</span>
+          <span className="text-5xl font-black">{store.streak}</span>
         </div>
       </footer>
     </article>

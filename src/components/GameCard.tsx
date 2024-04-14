@@ -29,10 +29,10 @@ export default function GameCard({ mode }: Props) {
         )
       }
     >
-      <h3 className="capitalize text-2xl font-medium">{mode.name}</h3>
+      <h3 className="text-2xl font-medium capitalize">{mode.name}</h3>
       <p>{mode.shortDescription}</p>
       <span
-        className="mt-6 text-right underline text-blue-500 dark:text-indigo-500"
+        className="mt-6 text-right text-blue-500 underline dark:text-indigo-500"
       >
         {mode.available ? "Let's try..." : "Not yet available..."}
       </span>

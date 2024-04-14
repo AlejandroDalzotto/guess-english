@@ -8,8 +8,8 @@ export default function HomePage() {
   return (
     <>
       <Smoke />
-      <main className="px-6 container flex flex-col mx-auto min-h-screen">
-        <header className="flex min-h-96 flex-col gap-y-8 items-center justify-center">
+      <main className="container flex flex-col min-h-screen px-6 mx-auto">
+        <header className="flex flex-col items-center justify-center min-h-96 gap-y-8">
           <Title>
             ¡Guess <br className="md:hidden" /> English!
           </Title>
@@ -17,11 +17,11 @@ export default function HomePage() {
           <p className="text-lg">This game has two modes which are <strong>Guess the verb</strong> and <strong>Wordle</strong>.</p>
         </header>
 
-        <section className="min-h-96 my-5 grid place-content-center">
+        <section className="grid my-5 min-h-96 place-content-center">
           <GameModes />
         </section>
 
-        <footer className="min-h-16 grid place-content-center">
+        <footer className="grid min-h-16 place-content-center">
 
           <p>made with ❤ by {" "}
             <Link

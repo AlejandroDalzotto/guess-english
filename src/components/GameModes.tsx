@@ -57,7 +57,7 @@ const modes: GameMode[] = [
 export default function GameModes() {
   return (
     <article>
-      <ul className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <ul className="grid grid-cols-1 gap-8 md:grid-cols-2">
 
         {
           modes.map((mode) => {

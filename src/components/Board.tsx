@@ -11,14 +11,14 @@ export default function Board() {
   const currentRow = useWordleStore((state) => state.currentRow)
 
   return (
-    <article className="min-h-96 w-full flex flex-col gap-y-1 justify-center items-center">
+    <article className="flex flex-col items-center justify-center w-full min-h-96 gap-y-1">
 
       {
         board.map((row, rowIndex) => {
 
           return (
 
-            <div className="flex justify-center gap-x-1 w-full" key={generateUUID()}>
+            <div className="flex justify-center w-full gap-x-1" key={generateUUID()}>
 
               {
                 row.map((letter, colIndex) => {

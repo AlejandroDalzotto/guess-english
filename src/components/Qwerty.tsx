@@ -11,7 +11,7 @@ export default function Qwerty() {
   const onTyping = useWordleStore(state => state.onTyping)
 
   return (
-    <div className="flex flex-col gap-y-2 items-center w-full">
+    <div className="flex flex-col items-center w-full gap-y-2">
       {
         qwerty.map((row, rowIndex) => {
           return (

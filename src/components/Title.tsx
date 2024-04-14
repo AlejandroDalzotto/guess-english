@@ -6,7 +6,7 @@ interface Props {
 export default function Title({ children }: Props) {
 
   return (
-    <h1 className="font-bold w-full text-center text-4xl">
+    <h1 className="w-full text-4xl font-bold text-center">
       {children}
     </h1>
   )

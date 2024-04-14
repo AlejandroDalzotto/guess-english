@@ -33,7 +33,7 @@ export default function LinkToRecords({
 
   if (!hasStoredData) {
     return (
-      <span className="mx-auto font-bold italic text-neutral-800 dark:text-neutral-600">No data to see yet...</span>
+      <span className="mx-auto italic font-bold text-neutral-800 dark:text-neutral-600">No data to see yet...</span>
     )
   }
 
@@ -46,7 +46,7 @@ export default function LinkToRecords({
         playOnUp()
       }}
     >
-      <svg className="w-8 dark:fill-white transition-colors h-8 group-hover/link:fill-blue-500 dark:group-hover/link:fill-indigo-500">
+      <svg className="w-8 h-8 transition-colors dark:fill-white group-hover/link:fill-blue-500 dark:group-hover/link:fill-indigo-500">
         <use xlinkHref="/sprites.svg#completed"></use>
       </svg>
       {history.label}

@@ -31,26 +31,26 @@ export default function VerbsHistory() {
 
 
   return (
-    <div className="w-full mx-auto gap-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+    <div className="grid w-full grid-cols-1 gap-10 mx-auto md:grid-cols-2 lg:grid-cols-3">
       {
         history.map((verb) => {
           return (
             <article
-              className="w-full grid relative hover:bg-white/5 border border-neutral-700 h-full p-6 transition-all rounded-lg hover:scale-105"
+              className="relative grid w-full h-full p-6 transition-all border rounded-lg hover:bg-white/5 border-neutral-700 hover:scale-105"
               key={verb.value}
             >
               <header>
-                <h3 className="capitalize text-xl font-medium underline text-left">{verb.value}</h3>
+                <h3 className="text-xl font-medium text-left underline capitalize">{verb.value}</h3>
               </header>
 
               {verb.translations.length ? (
                 <section>
-                  <h4 className="italic my-3">Common translations</h4>
+                  <h4 className="my-3 italic">Common translations</h4>
                   <div className="flex flex-wrap gap-4 my-3">
                     {
                       verb.translations.map((translation) => {
                         return (
-                          <p className="grid place-content-center py-1 px-3 rounded-full border border-neutral-700" key={translation + verb.value}>
+                          <p className="grid px-3 py-1 border rounded-full place-content-center border-neutral-700" key={translation + verb.value}>
                             {translation}
                           </p>
                         )
@@ -59,18 +59,18 @@ export default function VerbsHistory() {
                   </div>
                 </section>
               ) : (
-                <span className="text-neutral-800 dark:text-neutral-400 italic my-3">No translations available...</span>
+                <span className="my-3 italic text-neutral-800 dark:text-neutral-400">No translations available...</span>
               )}
 
               {verb.examplePhrases.length ? (
                 <section>
-                  <h4 className="italic my-3">Example phrases</h4>
-                  <ul className="flex flex-col gap-y-4 my-3">
+                  <h4 className="my-3 italic">Example phrases</h4>
+                  <ul className="flex flex-col my-3 gap-y-4">
                     {
                       verb.examplePhrases.map((phrase) => {
                         return (
                           <li
-                            className="grid place-content-start px-4"
+                            className="grid px-4 place-content-start"
                             key={phrase + verb.value}
                           >
                             <Phrase text={phrase} words={verb.highlight} />
@@ -81,7 +81,7 @@ export default function VerbsHistory() {
                   </ul>
                 </section>
               ) : (
-                <span className="text-neutral-800 dark:text-neutral-400 italic my-3">There are no examples sentences to show...</span>
+                <span className="my-3 italic text-neutral-800 dark:text-neutral-400">There are no examples sentences to show...</span>
               )}
             </article>
           )

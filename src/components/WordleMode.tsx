@@ -5,14 +5,14 @@ import Board from "./Board";
 export default function WordleMode() {
 
   return (
-    <section className="outline-none relative flex flex-col items-center">
+    <section className="relative flex flex-col items-center outline-none">
       <Board />
-      <article className="w-full my-8 grid place-content-center">
+      <article className="grid w-full my-8 place-content-center">
 
         <ResetWordleButtom />
 
       </article>
-      <article className="w-full relative">
+      <article className="relative w-full">
         <Qwerty />
       </article>
     </section>
