@@ -3,7 +3,7 @@
 import { isValidWord } from "@/lib/actions";
 import { compareWords, isValidKey } from "@/lib/utils";
 import { useWordleStore } from "@/stores/wordle-store";
-import { useEffect, type KeyboardEvent } from "react"
+import { useEffect } from "react"
 
 interface Props {
   children: React.ReactNode
@@ -35,54 +35,58 @@ export default function WordleProvider({ children }: Props) {
     init()
   }, [init])
 
+  // Listen key events
+  useEffect(() => {
+    const handleKeyDown = async (e: KeyboardEvent) => {
+      e.preventDefault()
 
-  const handleKeyDown = async (e: KeyboardEvent<HTMLDivElement>) => {
-    e.preventDefault()
+      if (gameState === "playing" && guess) {
 
-    if (gameState === "playing" && guess) {
+        if (e.key === "Enter" && board[currentRow].every(v => v.value !== " ")) {
 
-      if (e.key === "Enter" && board[currentRow].every(v => v.value !== " ")) {
+          // Validate if the word is in the json's word.
+          const parsedWord = currentWord.map(letter => letter.value).join("")
+          const isValid = await isValidWord(parsedWord)
 
-        // Validate if the word is in the json's word.
-        const parsedWord = currentWord.map(letter => letter.value).join("")
-        const isValid = await isValidWord(parsedWord)
+          if (!isValid) {
+            console.log("PALABRA NO VALIDA")
+            return;
+          }
 
-        if (!isValid) {
-          console.log("PALABRA NO VALIDA")
+          const comparedWord = compareWords(guess, currentWord)
+          updateQwerty(comparedWord)
+
+          // If the typed word is equals to the secret word then user win
+          if (comparedWord.every(letter => letter.color === "green")) {
+            onVictory(comparedWord)
+          } else {
+            // If not, user lose
+            onDefeat(comparedWord)
+          }
+
           return;
         }
 
-        const comparedWord = compareWords(guess, currentWord)
-        updateQwerty(comparedWord)
-
-        // If the typed word is equals to the secret word then user win
-        if (comparedWord.every(letter => letter.color === "green")) {
-          onVictory(comparedWord)
-        } else {
-          // If not, user lose
-          onDefeat(comparedWord)
+        // Validate if backspace is pressed
+        if (e.key === "Backspace") {
+          onBackspace();
+          return;
         }
 
-        return;
-      }
-
-      // Validate if backspace is pressed
-      if (e.key === "Backspace") {
-        onBackspace();
-        return;
-      }
-
-      // If key pressed is neither Enter or Backspace, fill the current column with the value
-      if (isValidKey(e.key) && currentWord[4].value === " ") {
-        onTyping(e.key);
-        return;
+        // If key pressed is neither Enter or Backspace, fill the current column with the value
+        if (isValidKey(e.key) && currentWord[4].value === " ") {
+          onTyping(e.key);
+          return;
+        }
       }
     }
-  }
 
-  return (
-    <div tabIndex={-1} onKeyDown={handleKeyDown}>
-      {children}
-    </div>
-  )
+    document.addEventListener("keydown", handleKeyDown)
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown)
+    }
+  }, [board, currentRow, currentWord, gameState, guess, onBackspace, onDefeat, onTyping, onVictory, updateQwerty])
+
+  return (children);
 }
