@@ -29,7 +29,7 @@ export default function Board() {
                         "border-2 transition-all rounded-lg w-full max-w-16 text-2xl font-bold capitalize aspect-square grid place-content-center",
                         { "border-blue-400": currentCol === colIndex && currentRow === rowIndex },
                         { "border-neutral-700": currentCol !== colIndex || currentRow !== rowIndex },
-                        { "bg-neutral-900": letter.color === "neutral" },
+                        { "bg-white/5": letter.color === "neutral" },
                         { "bg-yellow-500": letter.color === "yellow" },
                         { "bg-green-500": letter.color === "green" },
                         { "bg-neutral-950": letter.color === "gray" },
