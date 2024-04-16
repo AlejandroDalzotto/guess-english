@@ -50,6 +50,9 @@ export const useWordleStore = create<State & Actions>()(
           set((state) => ({
             points: state.points - 10,
             gameState: "idle",
+
+            // Re-render board.
+            board: state.board.map((row, rowIndex) => rowIndex === state.currentRow ? compareWord : row)
           }))
 
           return;
