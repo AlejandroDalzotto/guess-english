@@ -118,8 +118,24 @@ export const useWordleStore = create<State & Actions>()(
       },
       onBackspace: () => {
 
+        if (get().board[get().currentRow][get().currentCol].value === " " && get().currentCol !== 0) {
+
+          set((state) => ({
+
+            // Change to previous column if the value in current is empty.
+            currentCol: state.currentCol <= 1 ? 0 : state.currentCol - 1,
+            currentWord: state.currentWord.with(state.currentCol, { value: " ", color: "neutral" }),
+            board: state.board.map((row, rowIndex) =>
+              rowIndex === state.currentRow
+                ? row.map((col, colIndex) => (colIndex === state.currentCol - 1 ? { value: " ", color: "neutral" } : col))
+                : row
+            )
+          }))
+
+          return;
+        }
+
         set((state) => ({
-          currentCol: state.currentCol <= 1 ? 0 : state.currentCol - 1,
           currentWord: state.currentWord.with(state.currentCol, { value: " ", color: "neutral" }),
           board: state.board.map((row, rowIndex) =>
             rowIndex === state.currentRow

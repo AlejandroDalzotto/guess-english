@@ -122,10 +122,13 @@ export const generateQwerty = (): Letter[][] => {
 }
 
 export const updateKeyboard = (word: Word, keyboard: Letter[][]): Letter[][] => {
+  // Loop through all the elements of the keyboard.
   const updatedKeyboard: Letter[][] = keyboard.map(row =>
+    // Loop through all the elements of the row.
     row.map(key => {
 
-      const isKeyInWord = word.find(letter => letter.value === key.value)
+      // find the specific letter in the word.
+      const isKeyInWord = word.find(letter => letter.value === key.value && key.color !== "green")
 
       if (isKeyInWord) {
         return isKeyInWord

@@ -47,7 +47,6 @@ export default function WordleProvider({ children }: Props) {
           // Validate if the word is in the json's word.
           const parsedWord = currentWord.map(letter => letter.value).join("")
           const isValid = await isValidWord(parsedWord)
-
           if (!isValid) {
             console.log("PALABRA NO VALIDA")
             return;
