@@ -148,7 +148,7 @@ export const useWordleStore = create<State & Actions>()(
       reset: async () => {
         const word = await getWord()
 
-        const { guess, ...newState } = initialState
+        const { guess, records, ...newState } = initialState
 
         set(() => ({
           ...newState,
