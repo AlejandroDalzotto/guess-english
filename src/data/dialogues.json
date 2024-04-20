@@ -1,0 +1,116 @@
+{
+  "dialogues": [
+    {
+      "topic": "encouragement",
+      "language": "English",
+      "dialogue": [
+        {
+          "text": "I'm not sure I can do this.",
+          "sender": "Worried Person",
+          "options": [
+            "Don't worry, you can try again.",
+            "Give up, it's too hard.",
+            "Why bother trying?"
+          ],
+          "correct": "Don't worry, you can try again."
+        }
+      ]
+    },
+    {
+      "topic": "travel",
+      "language": "English",
+      "dialogue": [
+        {
+          "text": "What is a good place to visit?",
+          "sender": "Travel Beginner",
+          "options": [
+            "The moon is nice this time of year.",
+            "How about visiting a park or a museum?",
+            "Stay home, it's easier."
+          ],
+          "correct": "How about visiting a park or a museum?"
+        }
+      ]
+    },
+    {
+      "topic": "food",
+      "language": "English",
+      "dialogue": [
+        {
+          "text": "What should I have for lunch?",
+          "sender": "Hungry Student",
+          "options": [
+            "Lunch is not important.",
+            "Maybe try a sandwich or a salad?",
+            "Just have some coffee."
+          ],
+          "correct": "Maybe try a sandwich or a salad?"
+        }
+      ]
+    },
+    {
+      "topic": "sports",
+      "language": "english",
+      "dialogue": [
+        {
+          "text": "What's a good workout for beginners?",
+          "sender": "Gym Newbie",
+          "options": [
+            "You should start with high-intensity interval training.",
+            "Begin with basic exercises like walking or jogging.",
+            "It's best to start with advanced weight lifting."
+          ],
+          "correct": "Begin with basic exercises like walking or jogging."
+        }
+      ]
+    },
+    {
+      "topic": "education",
+      "language": "english",
+      "dialogue": [
+        {
+          "text": "How can I improve my study habits?",
+          "sender": "Struggling Student",
+          "options": [
+            "Cram all your studying into one night.",
+            "Create a consistent study schedule and stick to it.",
+            "Studying is not necessary if you pay attention in class."
+          ],
+          "correct": "Create a consistent study schedule and stick to it."
+        }
+      ]
+    },
+    {
+      "topic": "environment",
+      "language": "English",
+      "dialogue": [
+        {
+          "text": "How can we reduce our carbon footprint?",
+          "sender": "Eco-Conscious Citizen",
+          "options": [
+            "Drive more often to get places faster.",
+            "Use energy-efficient appliances and reduce waste.",
+            "Carbon footprint isn't important, so no need to reduce it."
+          ],
+          "correct": "Use energy-efficient appliances and reduce waste."
+        }
+      ]
+    },
+    {
+      "topic": "entertainment",
+      "language": "English",
+      "dialogue": [
+        {
+          "text": "What are some good movies to watch?",
+          "sender": "Movie Buff",
+          "options": [
+            "You should only watch movies from the 90s.",
+            "Check out the latest Oscar-nominated films.",
+            "Movies are a waste of time; read a book instead."
+          ],
+          "correct": "Check out the latest Oscar-nominated films."
+        }
+      ]
+    }
+  ]
+}

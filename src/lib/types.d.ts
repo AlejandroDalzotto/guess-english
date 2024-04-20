@@ -28,3 +28,20 @@ export interface GameMode {
   };
   available: boolean;
 }
+
+export type Language = "english"
+
+export type Topic = "travel" | "encouragement" | "food" | "sports" | "education" | "environment" | "entertainment"
+
+export type Dialogue = {
+  text: string;
+  sender: string;
+  options: string[];
+  correct: string;
+}
+
+export interface DialogueData {
+  topic: Topic;
+  language: Language;
+  dialogue: Dialogue[]
+}
