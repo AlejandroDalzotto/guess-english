@@ -29,7 +29,7 @@ export const Smoke4 = () => {
   return (
     <div
       aria-hidden
-      className="fixed rounded-full -z-10 animate-fade-middle-opacity bottom-32 left-1/3 md:left-32 bg-gradient-conic from-rose-600 via-lime-400 to-transparent blur-3xl h-96 aspect-video"
+      className="fixed rounded-[50%] -z-10 animate-fade-middle-opacity bottom-72 left-1/3 md:left-32 bg-gradient-conic from-rose-600 via-sky-400 to-transparent blur-3xl h-40 aspect-[22/4] -rotate-45"
     ></div>
   )
 }
