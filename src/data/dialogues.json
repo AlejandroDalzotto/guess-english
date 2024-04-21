@@ -1,114 +1,146 @@
 [
   {
-    "topic": "encouragement",
-    "language": "english",
-    "dialogue": [
-      {
-        "text": "I'm not sure I can do this.",
-        "sender": "Worried Person",
-        "options": [
-          "Don't worry, you can try again.",
-          "Give up, it's too hard.",
-          "Why bother trying?"
-        ],
-        "correct": "Don't worry, you can try again."
-      }
-    ]
+    "topic": "restaurant",
+    "sender": "Waiter",
+    "text": "Would you like to start with some appetizers?",
+    "options": [
+      "Yes, I'd like to have the garlic bread, please.",
+      "Only if they can perform a dance routine first.",
+      "Sure, but do they come with a free penguin?",
+      "Yes, unless they're made of cloud whispers."
+    ],
+    "correct": "Yes, I'd like to have the garlic bread, please."
   },
   {
     "topic": "travel",
-    "language": "english",
-    "dialogue": [
-      {
-        "text": "What is a good place to visit?",
-        "sender": "Travel Beginner",
-        "options": [
-          "The moon is nice this time of year.",
-          "How about visiting a park or a museum?",
-          "Stay home, it's easier."
-        ],
-        "correct": "How about visiting a park or a museum?"
-      }
-    ]
+    "sender": "Tourist",
+    "text": "Could you tell me how to get to the train station?",
+    "options": [
+      "It's two blocks down and then turn left.",
+      "Wait for a whispering wind, it knows the way.",
+      "Only if you can sing it in reverse.",
+      "I think the museum closes at six in the evening."
+    ],
+    "correct": "It's two blocks down and then turn left."
+  },
+  {
+    "topic": "weather",
+    "sender": "Local",
+    "text": "It looks like it's going to rain today, doesn't it?",
+    "options": [
+      "Yes, I left my umbrella at home.",
+      "I prefer coffee over tea in the mornings.",
+      "My favorite color is blue, not green.",
+      "Let's order dessert first and decide later."
+    ],
+    "correct": "Yes, I left my umbrella at home."
+  },
+  {
+    "topic": "travel",
+    "sender": "Concierge",
+    "text": "Do you need any assistance with booking tours in the city?",
+    "options": [
+      "Yes, I'd like to know more about the historical tours.",
+      "I'm not sure, do you serve breakfast here?",
+      "Can you help me with the Wi-Fi password?",
+      "I usually take my coffee black, thanks."
+    ],
+    "correct": "Yes, I'd like to know more about the historical tours."
+  },
+  {
+    "topic": "travel",
+    "sender": "Flight Attendant",
+    "text": "Would you prefer a window or an aisle seat?",
+    "options": [
+      "I'll take the window seat, thank you.",
+      "Could you bring me a vegetarian meal?",
+      "Can we turn up the air conditioning?",
+      "I'm allergic to cats, actually."
+    ],
+    "correct": "I'll take the window seat, thank you."
+  },
+  {
+    "topic": "travel",
+    "sender": "Travel Agent",
+    "text": "Are you interested in a travel insurance plan for your trip?",
+    "options": [
+      "Yes, that sounds like a good idea.",
+      "Yes, I usually wake up at 7 AM on weekdays.",
+      "I think I'll go with the chicken salad for lunch.",
+      "My favorite book is 'To Kill a Mockingbird'."
+    ],
+    "correct": "Yes, that sounds like a good idea."
+  },
+  {
+    "topic": "restaurant",
+    "sender": "Customer",
+    "text": "I'm looking for a dish that's gluten-free, what do you recommend?",
+    "options": [
+      "The grilled salmon comes with a side of fresh vegetables.",
+      "Have you seen the latest movie trailers?",
+      "We have a great selection of wines.",
+      "I'm thinking about redecorating my living room."
+    ],
+    "correct": "The grilled salmon comes with a side of fresh vegetables."
   },
   {
     "topic": "food",
-    "language": "english",
-    "dialogue": [
-      {
-        "text": "What should I have for lunch?",
-        "sender": "Hungry Student",
-        "options": [
-          "Lunch is not important.",
-          "Maybe try a sandwich or a salad?",
-          "Just have some coffee."
-        ],
-        "correct": "Maybe try a sandwich or a salad?"
-      }
-    ]
+    "sender": "Chef",
+    "text": "Did you enjoy the special spicy chicken dish?",
+    "options": [
+      "Yes, it was delicious, but a bit too spicy for me.",
+      "I haven't decided on dessert yet.",
+      "The chicken was undercooked, I'd like something else.",
+      "I prefer wearing sneakers over sandals."
+    ],
+    "correct": "Yes, it was delicious, but a bit too spicy for me."
   },
   {
-    "topic": "sports",
-    "language": "english",
-    "dialogue": [
-      {
-        "text": "What's a good workout for beginners?",
-        "sender": "Gym Newbie",
-        "options": [
-          "You should start with high-intensity interval training.",
-          "Begin with basic exercises like walking or jogging.",
-          "It's best to start with advanced weight lifting."
-        ],
-        "correct": "Begin with basic exercises like walking or jogging."
-      }
-    ]
+    "topic": "restaurant",
+    "sender": "Server",
+    "text": "Our special today is grilled trout. Would you like to try it?",
+    "options": [
+      "I'm allergic to fish, do you have any pasta dishes?",
+      "Yes, I'll try the trout. How is it seasoned?",
+      "What time does the next bus arrive?",
+      "Is the trout served with a side of rice?"
+    ],
+    "correct": "Yes, I'll try the trout. How is it seasoned?"
   },
   {
-    "topic": "education",
-    "language": "english",
-    "dialogue": [
-      {
-        "text": "How can I improve my study habits?",
-        "sender": "Struggling Student",
-        "options": [
-          "Cram all your studying into one night.",
-          "Create a consistent study schedule and stick to it.",
-          "Studying is not necessary if you pay attention in class."
-        ],
-        "correct": "Create a consistent study schedule and stick to it."
-      }
-    ]
+    "topic": "workplace",
+    "sender": "Manager",
+    "text": "We have a new project starting next week. Who would like to lead the team?",
+    "options": [
+      "I'm interested. I have experience managing similar projects.",
+      "What's the weather forecast for tomorrow?",
+      "Do you have any plans for the weekend?",
+      "I'm more of a dog person, actually."
+    ],
+    "correct": "I'm interested. I have experience managing similar projects."
   },
   {
-    "topic": "environment",
-    "language": "english",
-    "dialogue": [
-      {
-        "text": "How can we reduce our carbon footprint?",
-        "sender": "Eco-Conscious Citizen",
-        "options": [
-          "Drive more often to get places faster.",
-          "Use energy-efficient appliances and reduce waste.",
-          "Carbon footprint isn't important, so no need to reduce it."
-        ],
-        "correct": "Use energy-efficient appliances and reduce waste."
-      }
-    ]
+    "topic": "work",
+    "sender": "Colleague",
+    "text": "Do you have any tips for staying productive while working from home?",
+    "options": [
+      "I find setting a strict schedule helps.",
+      "I love listening to jazz music while baking cookies.",
+      "I prefer tea over coffee in the mornings.",
+      "I'm planning a trip to the beach next month."
+    ],
+    "correct": "I find setting a strict schedule helps."
   },
   {
-    "topic": "entertainment",
-    "language": "english",
-    "dialogue": [
-      {
-        "text": "What are some good movies to watch?",
-        "sender": "Movie Buff",
-        "options": [
-          "You should only watch movies from the 90s.",
-          "Check out the latest Oscar-nominated films.",
-          "Movies are a waste of time; read a book instead."
-        ],
-        "correct": "Check out the latest Oscar-nominated films."
-      }
-    ]
+    "topic": "job interview",
+    "sender": "Interviewer",
+    "text": "Tell me about a challenging situation you've faced at work and how you handled it.",
+    "options": [
+      "I once had a conflict with a coworker, but we resolved it through communication.",
+      "I enjoy hiking on weekends, especially in the mountains.",
+      "My favorite hobby is painting landscapes.",
+      "I'm considering adopting a pet from the shelter."
+    ],
+    "correct": "I once had a conflict with a coworker, but we resolved it through communication."
   }
 ]

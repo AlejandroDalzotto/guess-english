@@ -26,17 +26,12 @@ export interface GameMode {
 
 export type Language = "english"
 
-export type Topic = "travel" | "encouragement" | "food" | "sports" | "education" | "environment" | "entertainment"
+export type Topic = "travel" | "restaurant" | "weather" | "food" | "work" | "workplace" | "job interview"
 
 export type Dialogue = {
-  text: string;
+  topic: Topic;
   sender: string;
+  text: string;
   options: string[];
   correct: string;
-}
-
-export interface DialogueData {
-  topic: Topic;
-  language: Language;
-  dialogue: Dialogue[]
 }

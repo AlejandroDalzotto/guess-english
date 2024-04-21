@@ -1,6 +1,6 @@
 "use server";
 import { promises as fs } from 'fs';
-import type { DialogueData, Topic, Word } from './types';
+import type { Dialogue, Topic, Word } from './types';
 
 export const getWord = async () => {
 
@@ -33,7 +33,7 @@ export const getTotalWords = async () => {
 
 export const getDialoguesTopics = async () => {
   const file = await fs.readFile(process.cwd() + '/src/data/dialogues.json', 'utf8');
-  const dialogues: DialogueData[] = JSON.parse(file);
+  const dialogues: Dialogue[] = JSON.parse(file);
 
   const result = dialogues.map(dialogue => dialogue.topic);
 
@@ -42,7 +42,7 @@ export const getDialoguesTopics = async () => {
 
 export const getTotalDialoguesByTopic = async (topic: Topic) => {
   const file = await fs.readFile(process.cwd() + '/src/data/dialogues.json', 'utf8');
-  const dialogues: DialogueData[] = JSON.parse(file);
+  const dialogues: Dialogue[] = JSON.parse(file);
 
   const filteredDialogues = dialogues.filter(dialogue => dialogue.topic === topic);
 
@@ -51,7 +51,7 @@ export const getTotalDialoguesByTopic = async (topic: Topic) => {
 
 export const getDialoguesByTopic = async (topic: Topic) => {
   const file = await fs.readFile(process.cwd() + '/src/data/dialogues.json', 'utf8');
-  const dialogues: DialogueData[] = JSON.parse(file);
+  const dialogues: Dialogue[] = JSON.parse(file);
 
   const filteredDialogues = dialogues.filter(dialogue => dialogue.topic === topic);
 
