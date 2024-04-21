@@ -1,5 +1,4 @@
 import { randomUUID } from "crypto";
-import LinkToRecords from "./LinkToRecords";
 import { GameMode } from "@/lib/types";
 import GameCard from "./GameCard";
 
@@ -9,11 +8,6 @@ const modes: GameMode[] = [
     name: "guess the verb",
     shortDescription: "Select the correct translation of the verb.",
     href: "/guess-the-verb",
-    history: {
-      store: "gtv__s",
-      label: "View verbs history",
-      url: "/verbs-history"
-    },
     available: true,
   },
   {
@@ -21,11 +15,6 @@ const modes: GameMode[] = [
     name: "complete the phrase",
     shortDescription: "Complete the blank places of the phrase.",
     href: "/complete-the-phrase",
-    history: {
-      store: "ctp__s",
-      label: "View phrases history",
-      url: "/phrases-history"
-    },
     available: false,
   },
   {
@@ -33,24 +22,14 @@ const modes: GameMode[] = [
     name: "wordle",
     shortDescription: "Get 6 chances to guess a 5-letters word.",
     href: "/wordle",
-    history: {
-      store: "w__s",
-      label: "View words history",
-      url: "/words-history"
-    },
     available: true,
   },
   {
     uuid: randomUUID(),
-    name: "Learn",
-    shortDescription: "Read articles on different topics about grammar.",
-    href: "/learn",
-    history: {
-      store: "l__s",
-      label: "View learn history",
-      url: "/learn-history"
-    },
-    available: false,
+    name: "Dialogues",
+    shortDescription: "Respond to dialogues correctly.",
+    href: "/dialogues",
+    available: true,
   }
 ]
 
@@ -66,8 +45,6 @@ export default function GameModes() {
 
               <div className="flex flex-col items-start gap-y-3" key={mode.uuid}>
                 <GameCard mode={mode} />
-
-                <LinkToRecords history={mode.history} />
               </div>
 
             )

@@ -21,11 +21,6 @@ export interface GameMode {
   name: string;
   shortDescription: string;
   href: string;
-  history: {
-    store: string;
-    url: string;
-    label: string;
-  };
   available: boolean;
 }
 
