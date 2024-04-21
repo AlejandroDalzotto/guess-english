@@ -1,6 +1,7 @@
 import { getDialoguesTopics } from "@/lib/actions"
 import { generateUUID } from "@/lib/utils"
 import TotalDialogues from "./TotalDialogues"
+import LinkSfx from "../LinkSfx"
 
 export default async function DialoguesMode() {
 
@@ -18,15 +19,16 @@ export default async function DialoguesMode() {
 
             return (
 
-              <div
-                className="flex flex-col items-center justify-center transition-all border rounded-lg shadow cursor-pointer hover:bg-white/5 border-neutral-800 hover:scale-105"
+              <LinkSfx
+                href={`/dialogues/${topic}`}
+                className="flex flex-col items-center justify-center transition-all border rounded-lg shadow cursor-pointer active:scale-90 hover:bg-white/5 border-neutral-800 hover:scale-105"
                 key={generateUUID()}
               >
                 <p className="text-3xl font-bold capitalize">
                   {topic}
                 </p>
                 <TotalDialogues topic={topic} />
-              </div>
+              </LinkSfx>
 
             )
 
