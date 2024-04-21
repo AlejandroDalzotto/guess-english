@@ -2,7 +2,7 @@
   "dialogues": [
     {
       "topic": "encouragement",
-      "language": "English",
+      "language": "english",
       "dialogue": [
         {
           "text": "I'm not sure I can do this.",
@@ -18,7 +18,7 @@
     },
     {
       "topic": "travel",
-      "language": "English",
+      "language": "english",
       "dialogue": [
         {
           "text": "What is a good place to visit?",
@@ -34,7 +34,7 @@
     },
     {
       "topic": "food",
-      "language": "English",
+      "language": "english",
       "dialogue": [
         {
           "text": "What should I have for lunch?",
@@ -82,7 +82,7 @@
     },
     {
       "topic": "environment",
-      "language": "English",
+      "language": "english",
       "dialogue": [
         {
           "text": "How can we reduce our carbon footprint?",
@@ -98,7 +98,7 @@
     },
     {
       "topic": "entertainment",
-      "language": "English",
+      "language": "english",
       "dialogue": [
         {
           "text": "What are some good movies to watch?",
