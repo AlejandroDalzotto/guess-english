@@ -35,9 +35,9 @@ export const getDialoguesTopics = async () => {
   const file = await fs.readFile(process.cwd() + '/src/data/dialogues.json', 'utf8');
   const dialogues: Dialogue[] = JSON.parse(file);
 
-  const result = dialogues.map(dialogue => dialogue.topic);
+  const result = new Set(dialogues.map(dialogue => dialogue.topic))
 
-  return result;
+  return Array.from(result);
 }
 
 export const getTotalDialoguesByTopic = async (topic: Topic) => {

@@ -34,4 +34,5 @@ export type Dialogue = {
   text: string;
   options: string[];
   correct: string;
+  label: string;
 }

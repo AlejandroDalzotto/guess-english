@@ -9,7 +9,8 @@
       "Sure, but do they come with a free penguin?",
       "Yes, unless they're made of cloud whispers."
     ],
-    "correct": "Yes, I'd like to have the garlic bread, please."
+    "correct": "Yes, I'd like to have the garlic bread, please.",
+    "label": "Appetizer Inquiry"
   },
   {
     "topic": "travel",
@@ -21,7 +22,8 @@
       "Only if you can sing it in reverse.",
       "I think the museum closes at six in the evening."
     ],
-    "correct": "It's two blocks down and then turn left."
+    "correct": "It's two blocks down and then turn left.",
+    "label": "Directions Inquiry"
   },
   {
     "topic": "weather",
@@ -33,7 +35,8 @@
       "My favorite color is blue, not green.",
       "Let's order dessert first and decide later."
     ],
-    "correct": "Yes, I left my umbrella at home."
+    "correct": "Yes, I left my umbrella at home.",
+    "label": "Rain Prediction"
   },
   {
     "topic": "travel",
@@ -45,7 +48,8 @@
       "Can you help me with the Wi-Fi password?",
       "I usually take my coffee black, thanks."
     ],
-    "correct": "Yes, I'd like to know more about the historical tours."
+    "correct": "Yes, I'd like to know more about the historical tours.",
+    "label": "Tour Booking Inquiry"
   },
   {
     "topic": "travel",
@@ -57,7 +61,8 @@
       "Can we turn up the air conditioning?",
       "I'm allergic to cats, actually."
     ],
-    "correct": "I'll take the window seat, thank you."
+    "correct": "I'll take the window seat, thank you.",
+    "label": "Seat Preference Inquiry"
   },
   {
     "topic": "travel",
@@ -69,7 +74,8 @@
       "I think I'll go with the chicken salad for lunch.",
       "My favorite book is 'To Kill a Mockingbird'."
     ],
-    "correct": "Yes, that sounds like a good idea."
+    "correct": "Yes, that sounds like a good idea.",
+    "label": "Travel Insurance Offer"
   },
   {
     "topic": "restaurant",
@@ -81,7 +87,8 @@
       "We have a great selection of wines.",
       "I'm thinking about redecorating my living room."
     ],
-    "correct": "The grilled salmon comes with a side of fresh vegetables."
+    "correct": "The grilled salmon comes with a side of fresh vegetables.",
+    "label": "Gluten-Free Dish Inquiry"
   },
   {
     "topic": "food",
@@ -93,7 +100,8 @@
       "The chicken was undercooked, I'd like something else.",
       "I prefer wearing sneakers over sandals."
     ],
-    "correct": "Yes, it was delicious, but a bit too spicy for me."
+    "correct": "Yes, it was delicious, but a bit too spicy for me.",
+    "label": "Feedback on Spicy Chicken Dish"
   },
   {
     "topic": "restaurant",
@@ -105,7 +113,8 @@
       "What time does the next bus arrive?",
       "Is the trout served with a side of rice?"
     ],
-    "correct": "Yes, I'll try the trout. How is it seasoned?"
+    "correct": "Yes, I'll try the trout. How is it seasoned?",
+    "label": "Special Dish Inquiry"
   },
   {
     "topic": "workplace",
@@ -117,7 +126,8 @@
       "Do you have any plans for the weekend?",
       "I'm more of a dog person, actually."
     ],
-    "correct": "I'm interested. I have experience managing similar projects."
+    "correct": "I'm interested. I have experience managing similar projects.",
+    "label": "Project Team Leader Selection"
   },
   {
     "topic": "work",
@@ -129,7 +139,8 @@
       "I prefer tea over coffee in the mornings.",
       "I'm planning a trip to the beach next month."
     ],
-    "correct": "I find setting a strict schedule helps."
+    "correct": "I find setting a strict schedule helps.",
+    "label": "Productivity Tips Inquiry"
   },
   {
     "topic": "job interview",
@@ -141,6 +152,7 @@
       "My favorite hobby is painting landscapes.",
       "I'm considering adopting a pet from the shelter."
     ],
-    "correct": "I once had a conflict with a coworker, but we resolved it through communication."
+    "correct": "I once had a conflict with a coworker, but we resolved it through communication.",
+    "label": "Challenging Work Situation Inquiry"
   }
 ]
