@@ -140,3 +140,24 @@ export const updateKeyboard = (word: Word, keyboard: Letter[][]): Letter[][] => 
   );
   return updatedKeyboard;
 }
+
+export const toUpperFirst = (str: string, option: "first" | "all" = "all"): string => {
+
+  const capitalizeWord = (word: string): string => {
+    return word[0].toUpperCase() + word.slice(1);
+  };
+
+  const parsedStr = str.toLowerCase().split("-");
+
+  if (option === "all") {
+    const result = parsedStr.map(capitalizeWord);
+    return result.join(" ");
+  }
+
+  const resultOnlyFirst = parsedStr.map((word, index) => {
+    return index === 0 ? capitalizeWord(word) : word;
+  });
+
+  return resultOnlyFirst.join(" ");
+
+}

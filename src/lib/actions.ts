@@ -40,7 +40,7 @@ export const getDialoguesTopics = async () => {
   return Array.from(result);
 }
 
-export const getTotalDialoguesByTopic = async (topic: Topic) => {
+export const getTotalDialoguesByTopic = async (topic: Topic | string) => {
   const file = await fs.readFile(process.cwd() + '/src/data/dialogues.json', 'utf8');
   const dialogues: Dialogue[] = JSON.parse(file);
 
@@ -49,11 +49,24 @@ export const getTotalDialoguesByTopic = async (topic: Topic) => {
   return filteredDialogues.length;
 }
 
-export const getDialoguesByTopic = async (topic: Topic) => {
+export const getDialoguesByTopic = async (topic: Topic | string) => {
   const file = await fs.readFile(process.cwd() + '/src/data/dialogues.json', 'utf8');
   const dialogues: Dialogue[] = JSON.parse(file);
 
   const filteredDialogues = dialogues.filter(dialogue => dialogue.topic === topic);
+
+  return filteredDialogues;
+}
+
+export const getDialogueByLabel = async (label: string) => {
+  const file = await fs.readFile(process.cwd() + '/src/data/dialogues.json', 'utf8');
+  const dialogues: Dialogue[] = JSON.parse(file);
+
+  const filteredDialogues = dialogues.find(value => value.label.replaceAll("-", " ").toLowerCase() === label.toLowerCase())
+
+  if (!filteredDialogues) {
+    throw new Error("Dialogue not found")
+  }
 
   return filteredDialogues;
 }

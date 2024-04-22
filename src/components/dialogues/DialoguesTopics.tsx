@@ -3,7 +3,7 @@ import { generateUUID } from "@/lib/utils"
 import TotalDialogues from "./TotalDialogues"
 import LinkSfx from "../LinkSfx"
 
-export default async function DialoguesMode() {
+export default async function DialoguesTopics() {
 
   const topics = await getDialoguesTopics()
 

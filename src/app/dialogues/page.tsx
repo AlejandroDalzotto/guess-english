@@ -1,7 +1,7 @@
 import GoBackButton from "@/components/GoBackButton";
 import { Smoke4 } from "@/components/Smokes";
 import Title from "@/components/Title";
-import DialoguesMode from "@/components/dialogues/DialoguesMode";
+import DialoguesTopics from "@/components/dialogues/DialoguesTopics";
 import { type Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -23,7 +23,7 @@ export default function DialoguesPage() {
           </Title>
         </header>
         <section className="relative row-span-6">
-          <DialoguesMode />
+          <DialoguesTopics />
         </section>
       </main>
     </>
