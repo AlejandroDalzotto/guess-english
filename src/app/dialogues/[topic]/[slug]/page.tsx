@@ -39,7 +39,9 @@ export default async function DialogueSlug({
 ) {
 
   const label = toUpperFirst(params.slug)
-  const dialogue = await getDialogueByLabel(label)
+  const section = await getDialogueByLabel(label)
+
+  const dialogues = section.dialogues
 
   return (
     <>
@@ -51,32 +53,26 @@ export default async function DialogueSlug({
           </div>
           <div className="flex flex-col items-center md:flex-row gap-x-5">
             <h1 className="w-full text-4xl font-bold text-center">{label}</h1>
-            <TopicTag topic={dialogue.topic} />
+            <TopicTag topic={section.topic} />
           </div>
         </header>
         <section className="relative row-span-6">
           <article className="flex flex-col p-10 overflow-y-auto border rounded-lg min-h-96 max-h-96 border-neutral-800 gap-y-4">
-            <Typewriter text={dialogue.text} />
+            <Typewriter text={dialogues[0].text} />
           </article>
           <article className="grid grid-cols-1 gap-5 mt-10 md:grid-cols-2">
-
             {
-              shuffleArray(dialogue.options).map((option) => {
-
+              shuffleArray(dialogues[0].options).map((option) => {
                 return (
-
                   <div
                     className="px-6 py-3 text-xl transition-colors border rounded-lg shadow select-none hover:bg-white/5 border-neutral-800"
                     key={generateUUID()}
                   >
                     {option}
                   </div>
-
                 )
-
               })
             }
-
           </article>
         </section>
       </main>

@@ -1,6 +1,6 @@
 "use server";
 import { promises as fs } from 'fs';
-import type { Dialogue, Topic, Word } from './types';
+import type { DialogueSection, Topic, Word } from './types';
 
 export const getWord = async () => {
 
@@ -33,40 +33,40 @@ export const getTotalWords = async () => {
 
 export const getDialoguesTopics = async () => {
   const file = await fs.readFile(process.cwd() + '/src/data/dialogues.json', 'utf8');
-  const dialogues: Dialogue[] = JSON.parse(file);
+  const sections: DialogueSection[] = JSON.parse(file);
 
-  const result = new Set(dialogues.map(dialogue => dialogue.topic))
+  const result = new Set(sections.map(dialogue => dialogue.topic))
 
   return Array.from(result);
 }
 
 export const getTotalDialoguesByTopic = async (topic: Topic | string) => {
   const file = await fs.readFile(process.cwd() + '/src/data/dialogues.json', 'utf8');
-  const dialogues: Dialogue[] = JSON.parse(file);
+  const sections: DialogueSection[] = JSON.parse(file);
 
-  const filteredDialogues = dialogues.filter(dialogue => dialogue.topic === topic);
+  const filteredSections = sections.filter(dialogue => dialogue.topic === topic);
 
-  return filteredDialogues.length;
+  return filteredSections.length;
 }
 
 export const getDialoguesByTopic = async (topic: Topic | string) => {
   const file = await fs.readFile(process.cwd() + '/src/data/dialogues.json', 'utf8');
-  const dialogues: Dialogue[] = JSON.parse(file);
+  const sections: DialogueSection[] = JSON.parse(file);
 
-  const filteredDialogues = dialogues.filter(dialogue => dialogue.topic === topic);
+  const filteredSection = sections.filter(dialogue => dialogue.topic === topic);
 
-  return filteredDialogues;
+  return filteredSection;
 }
 
 export const getDialogueByLabel = async (label: string) => {
   const file = await fs.readFile(process.cwd() + '/src/data/dialogues.json', 'utf8');
-  const dialogues: Dialogue[] = JSON.parse(file);
+  const sections: DialogueSection[] = JSON.parse(file);
 
-  const filteredDialogues = dialogues.find(value => value.label.replaceAll("-", " ").toLowerCase() === label.toLowerCase())
+  const filteredSection = sections.find(value => value.label.replaceAll("-", " ").toLowerCase() === label.toLowerCase())
 
-  if (!filteredDialogues) {
+  if (!filteredSection) {
     throw new Error("Dialogue not found")
   }
 
-  return filteredDialogues;
+  return filteredSection;
 }
