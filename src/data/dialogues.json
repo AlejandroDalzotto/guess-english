@@ -1,52 +1,57 @@
 [
   {
+    "description": "You are someone interested in traveling and want to explore Tokyo and Kyoto in Japan. You seek a travel agent to get information about flights, accommodation, and activities.",
     "topic": "travel",
-    "label": "Planning a Trip",
+    "label": "Planning a Trip to Tokyo",
     "dialogues": [
       {
-        "text": "I'm looking to book a flight to Tokyo for next month.",
+        "text": "Welcome! How can I assist you today?",
         "options": [
-          "Would you like a window or aisle seat?",
-          "Our flights to Tokyo are fully booked until next year.",
-          "Can I offer you a special meal for the flight?",
-          "Do you have any discounts for frequent flyers?"
+          "Hi, I’m interested in traveling to Tokyo, Japan. Could you provide me with information on flights, accommodation, and activities there?",
+          "Did you know that the Tokyo Tower lights up differently depending on the season?",
+          "I heard there’s a café in Shibuya where you can play with hedgehogs.",
+          "By the way, have you ever tried sushi from Tsukiji Fish Market? It’s a must!"
         ],
-        "correct": "Would you like a window or aisle seat?",
+        "correct": "Hi, I’m interested in traveling to Tokyo, Japan. Could you provide me with information on flights, accommodation, and activities there?",
         "sender": "Travel Agent"
       },
       {
-        "text": "I would prefer an aisle seat, please. And could you check if there are any available upgrades?",
+        "text": "Certainly, I’d be happy to help. To start, when are you planning to travel and how long would you like to stay in Tokyo?",
         "options": [
-          "Sure, we have a business class seat available for an extra fee.",
-          "I'm sorry, but we don't provide upgrades.",
-          "Would you like to add travel insurance to your booking?",
-          "How many bags will you be checking in?"
+          "I’m thinking of going in October for two weeks.",
+          "October is also when the famous Kanda Festival takes place, quite a sight to behold.",
+          "If you’re into technology, Akihabara is like stepping into the future.",
+          "And don’t forget to check out the autumn leaves in the many gardens around the city."
         ],
-        "correct": "Sure, we have a business class seat available for an extra fee.",
+        "correct": "I’m thinking of going in October for two weeks.",
         "sender": "Travel Agent"
       },
       {
-        "text": "Great, I'll take the upgrade. How much extra luggage allowance does that include?",
+        "text": "Perfect. Regarding flights, we have several options from different airports. Do you have any preferences? Also, would you like to explore just Tokyo or other nearby cities as well?",
         "options": [
-          "Business class includes two additional checked bags.",
-          "You can carry on one personal item and one bag.",
-          "The luggage allowance is the same for all classes.",
-          "We charge $50 for each additional checked bag."
+          "I’d prefer direct flights from my city, and I’d like to visit Kyoto too.",
+          "Kyoto’s Fushimi Inari Shrine has thousands of torii gates, it’s quite the hike but absolutely worth it.",
+          "Remember to bring comfortable shoes; there’s a lot of walking involved in exploring these cities.",
+          "Also, Japan’s bullet trains are an experience in themselves, super fast and punctual."
         ],
-        "correct": "Business class includes two additional checked bags.",
+        "correct": "I’d prefer direct flights from my city, and I’d like to visit Kyoto too.",
         "sender": "Travel Agent"
       },
       {
-        "text": "Perfect, and what are the options for in-flight meals?",
+        "text": "Understood. I’ll send you some flight and hotel options to choose from. Additionally, I can recommend popular activities in Tokyo and Kyoto. Is there anything specific you’d like to do while you’re there?",
         "options": [
-          "We offer a variety of meals, including vegetarian and gluten-free options.",
-          "Meals are not included in business class tickets.",
-          "You need to purchase meals separately at the airport.",
-          "We only serve snacks on domestic flights."
+          "I’d like to visit temples, try local food, and experience traditional culture.",
+          "You might want to participate in a tea ceremony; it’s a serene experience.",
+          "For local food, you can’t miss out on street food in Nakamise Shopping Street.",
+          "And for a bit of history, the Edo-Tokyo Museum is incredibly informative."
         ],
-        "correct": "We offer a variety of meals, including vegetarian and gluten-free options.",
+        "correct": "I’d like to visit temples, try local food, and experience traditional culture.",
         "sender": "Travel Agent"
       }
-    ]
+    ],
+    "final": {
+      "text": "Great. I’ll send you a personalized itinerary with all the options. If you have any more questions, feel free to ask. I hope you have an amazing trip to Japan! 🌸🗼",
+      "sender": "Travel Agent"
+    }
   }
 ]
