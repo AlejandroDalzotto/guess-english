@@ -24,9 +24,16 @@ export interface GameMode {
   available: boolean;
 }
 
+export type Slug = string
+
 export type Language = "english"
 
 export type Topic = "travel"
+
+export type ChatText = {
+  text: string;
+  sender: string;
+}
 
 export type Dialogue = {
   text: string;
