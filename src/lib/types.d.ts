@@ -46,4 +46,6 @@ export type DialogueSection = {
   topic: Topic;
   label: string;
   dialogues: Dialogue[];
+  final: ChatText;
+  description: string;
 }

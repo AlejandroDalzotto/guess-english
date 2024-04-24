@@ -53,10 +53,11 @@ export const useDialogueStore = create<State & Actions>()(
         if (get().gameState === "playing") {
           const corrent = get().section!.dialogues[get().currentDialogueIndex].correct
           const userDialogue: ChatText = { text: corrent, sender: "me" }
+          const finalSentence: ChatText = { text: get().section!.final.text, sender: get().section!.final.sender }
 
           set((state) => ({
             records: [...state.records, state.section!.label],
-            chat: [...state.chat, userDialogue],
+            chat: [...state.chat, userDialogue, finalSentence],
             gameState: "idle"
           }))
         }
