@@ -12,6 +12,7 @@ type State = {
   section: DialogueSection | null;
   currentCorrect: string | null;
   currentDialogueIndex: number;
+  gameState: "playing" | "idle";
 }
 
 type Actions = Readonly<{
@@ -26,6 +27,7 @@ const initialState: State = {
   chat: [],
   currentCorrect: null,
   currentDialogueIndex: 0,
+  gameState: "playing",
 }
 
 export const useDialogueStore = create<State & Actions>()(
@@ -36,7 +38,7 @@ export const useDialogueStore = create<State & Actions>()(
         const section = await getDialogueByLabel(label)
 
         const initialText: ChatText = {
-          text: section.dialogues[0].correct,
+          text: section.dialogues[0].text,
           sender: section.dialogues[0].sender
         }
 
@@ -48,9 +50,16 @@ export const useDialogueStore = create<State & Actions>()(
       },
       onVictory: () => {
 
-        set((state) => ({
-          records: [...state.records, state.section!.label]
-        }))
+        if (get().gameState === "playing") {
+          const corrent = get().section!.dialogues[get().currentDialogueIndex].correct
+          const userDialogue: ChatText = { text: corrent, sender: "me" }
+
+          set((state) => ({
+            records: [...state.records, state.section!.label],
+            chat: [...state.chat, userDialogue],
+            gameState: "idle"
+          }))
+        }
 
       },
       onCorrect: () => {
@@ -64,7 +73,7 @@ export const useDialogueStore = create<State & Actions>()(
         const userDialogue: ChatText = { text: corrent, sender: "me" }
 
         set((state) => ({
-          currentDialogueIndex: state.currentDialogueIndex + 1,
+          currentDialogueIndex: state.currentDialogueIndex,
           chat: [...state.chat, userDialogue, nextDialogue],
           currentCorrect: nextDialogue.correct
         }))
