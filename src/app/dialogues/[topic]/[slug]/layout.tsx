@@ -16,19 +16,18 @@ export default function DialogueLayout({
   }
 }>) {
 
-  useEffect(() => {
-    useDialogueStore.persist.rehydrate();
-  }, [])
-
   // Store's actions.
   const init = useDialogueStore(state => state.init)
+  const records = useDialogueStore(state => state.records)
+  const sections = useDialogueStore(state => state.sections)
 
   useEffect(() => {
 
     const label = toUpperFirst(params.slug)
-
-    init(label)
-  }, [init, params.slug])
+    if (!records.includes(label) || !sections.some(value => value.section.title === label)) {
+      init(label)
+    }
+  }, [init, params.slug, records, sections])
 
   return children;
 }

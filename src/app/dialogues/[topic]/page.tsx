@@ -51,8 +51,7 @@ export default async function DialogueByTopicPage({
           <article className="flex flex-col h-full gap-y-5">
             {
               dialogues.map((item) => {
-
-                const slug = item.label.toLowerCase().replaceAll(" ", "-")
+                const slug = item.title.toLowerCase().replaceAll(" ", "-")
 
                 return (
 
@@ -62,7 +61,7 @@ export default async function DialogueByTopicPage({
                     key={generateUUID()}
                   >
 
-                    <p className="group-hover/link:translate-x-5 transition-transform">{item.label}</p>
+                    <p className="group-hover/link:translate-x-5 transition-transform">{item.title}</p>
 
                   </LinkSfx>
 

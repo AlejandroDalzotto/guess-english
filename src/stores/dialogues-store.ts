@@ -1,18 +1,18 @@
 import { getDialogueByLabel } from '@/lib/actions';
-import type { ChatText, DialogueSection, Slug } from '@/lib/types';
+import type { Line, DialogueSection, Slug } from '@/lib/types';
 import { create } from 'zustand'
 import { createJSONStorage, persist } from 'zustand/middleware';
-/**
- * @namespace
- * @ trstr as records
- */
+
 type State = {
   records: Slug[];
-  chat: ChatText[];
-  section: DialogueSection | null;
-  currentCorrect: string | null;
-  currentDialogueIndex: number;
-  gameState: "playing" | "idle";
+  sections: {
+    chat: Line[];
+    section: DialogueSection;
+    currentCorrect: string;
+    currentDialogueIndex: number;
+    completed: boolean;
+  }[];
+  currentPlaying: string | null;
 }
 
 type Actions = Readonly<{
@@ -23,11 +23,8 @@ type Actions = Readonly<{
 
 const initialState: State = {
   records: [],
-  section: null,
-  chat: [],
-  currentCorrect: null,
-  currentDialogueIndex: 0,
-  gameState: "playing",
+  sections: [],
+  currentPlaying: null,
 }
 
 export const useDialogueStore = create<State & Actions>()(
@@ -37,47 +34,83 @@ export const useDialogueStore = create<State & Actions>()(
       init: async (label: string) => {
         const section = await getDialogueByLabel(label)
 
-        const initialText: ChatText = {
-          text: section.dialogues[0].text,
-          sender: section.dialogues[0].sender
+        const isAlreadyInitialized = get().sections.some(value => value.section.title === section.title)
+
+        // Validate if the dialogue isn't already in the store. 
+        if (!isAlreadyInitialized) {
+          const initialText: Line = {
+            text: section.dialogues[0].text,
+            sender: section.dialogues[0].sender
+          }
+
+          set((state) => ({
+            sections: [...state.sections, {
+              section,
+              chat: [initialText],
+              currentCorrect: section.dialogues[0].correct,
+              currentDialogueIndex: 0,
+              completed: false
+            }]
+          }))
         }
 
         set(() => ({
-          section,
-          chat: [initialText],
-          currentCorrect: section.dialogues[0].correct
+          currentPlaying: section.title
         }))
       },
       onVictory: () => {
 
-        if (get().gameState === "playing") {
-          const corrent = get().section!.dialogues[get().currentDialogueIndex].correct
-          const userDialogue: ChatText = { text: corrent, sender: "me" }
-          const finalSentence: ChatText = { text: get().section!.final.text, sender: get().section!.final.sender }
+        const currentSectionPlaying = get().sections.find(value => value.section.title === get().currentPlaying)
+
+        if (currentSectionPlaying) {
+          const corrent = currentSectionPlaying.section.dialogues[currentSectionPlaying.currentDialogueIndex].correct
+          const userDialogue: Line = { text: corrent, sender: "me" }
+          const finalSentence: Line = { text: currentSectionPlaying.section.final.text, sender: currentSectionPlaying.section.final.sender }
 
           set((state) => ({
-            records: [...state.records, state.section!.label],
-            chat: [...state.chat, userDialogue, finalSentence],
-            gameState: "idle"
+            sections: [
+              ...state.sections,
+              {
+                ...currentSectionPlaying,
+                records: [...state.records, currentSectionPlaying.section.title],
+                chat: [...currentSectionPlaying.chat, userDialogue, finalSentence],
+                completed: true,
+              }
+            ]
           }))
         }
 
       },
       onCorrect: () => {
 
-        set((state) => ({
-          currentDialogueIndex: state.currentDialogueIndex + 1,
-        }))
+        const currentSectionPlaying = get().sections.find(value => value.section.title === get().currentPlaying)
 
-        const nextDialogue = get().section!.dialogues[get().currentDialogueIndex]
-        const corrent = get().section!.dialogues[get().currentDialogueIndex - 1].correct
-        const userDialogue: ChatText = { text: corrent, sender: "me" }
+        if (currentSectionPlaying) {
+          set((state) => ({
+            sections: [
+              ...state.sections,
+              {
+                ...currentSectionPlaying,
+                currentDialogueIndex: currentSectionPlaying.currentDialogueIndex + 1
+              }
+            ]
+          }))
 
-        set((state) => ({
-          currentDialogueIndex: state.currentDialogueIndex,
-          chat: [...state.chat, userDialogue, nextDialogue],
-          currentCorrect: nextDialogue.correct
-        }))
+          const nextDialogue = currentSectionPlaying.section.dialogues[currentSectionPlaying.currentDialogueIndex]
+          const corrent = currentSectionPlaying.section.dialogues[currentSectionPlaying.currentDialogueIndex - 1].correct
+          const userDialogue: Line = { text: corrent, sender: "me" }
+
+          set((state) => ({
+            sections: [
+              ...state.sections,
+              {
+                ...currentSectionPlaying,
+                chat: [...currentSectionPlaying.chat, userDialogue, nextDialogue],
+                currentCorrect: nextDialogue.correct
+              }
+            ]
+          }))
+        }
 
       }
     }),

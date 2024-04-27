@@ -2,6 +2,7 @@ import GoBackButton from "@/components/GoBackButton";
 import { Smoke4 } from "@/components/Smokes";
 import Title from "@/components/Title";
 import DialoguesTopics from "@/components/dialogues/DialoguesTopics";
+import DialogueProvider from "@/providers/DialogueProvider";
 import { type Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -11,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function DialoguesPage() {
   return (
-    <>
+    <DialogueProvider>
       <Smoke4 />
       <main className="container grid max-h-screen min-h-screen px-6 mx-auto grid-rows-10">
         <header className="flex flex-col items-center justify-center row-span-2 gap-y-8">
@@ -26,6 +27,6 @@ export default function DialoguesPage() {
           <DialoguesTopics />
         </section>
       </main>
-    </>
+    </DialogueProvider>
   )
 }

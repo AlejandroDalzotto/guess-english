@@ -62,7 +62,7 @@ export const getDialogueByLabel = async (label: string) => {
   const file = await fs.readFile(process.cwd() + '/src/data/dialogues.json', 'utf8');
   const sections: DialogueSection[] = JSON.parse(file);
 
-  const filteredSection = sections.find(value => value.label.replaceAll("-", " ").toLowerCase() === label.toLowerCase())
+  const filteredSection = sections.find(value => value.title.replaceAll("-", " ").toLowerCase() === label.toLowerCase())
 
   if (!filteredSection) {
     throw new Error("Dialogue not found")

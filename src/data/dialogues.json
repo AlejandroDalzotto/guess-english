@@ -2,7 +2,7 @@
   {
     "description": "You are someone interested in traveling and want to explore Tokyo and Kyoto in Japan. You seek a travel agent to get information about flights, accommodation, and activities.",
     "topic": "travel",
-    "label": "Planning a Trip to Tokyo",
+    "title": "Planning a Trip to Tokyo",
     "dialogues": [
       {
         "text": "Welcome! How can I assist you today?",
