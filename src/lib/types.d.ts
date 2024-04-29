@@ -100,3 +100,27 @@ export type DialogueSection = {
   final: Line;
   description: string;
 }
+
+/** Represents the complexity of each sentence (Phrase) */
+export enum Difficulty {
+  Easy = "easy",
+  Medium = "medium",
+  Hard = "hard"
+}
+
+/** Representation of the data of each *phrase* in **Complete the phrase** */
+export type Phrase = {
+  /**
+   * Initial sentence to answer.
+   */
+  text: string,
+  /**
+   * The correct positions of the words.
+   */
+  order: string[],
+  /**
+   * The different options to build the sentence.
+   */
+  options: string[],
+  difficulty: Difficulty
+}

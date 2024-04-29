@@ -1,6 +1,6 @@
 "use server";
 import { promises as fs } from 'fs';
-import type { DialogueSection, Topic, Word } from './types';
+import type { DialogueSection, Difficulty, Phrase, Topic, Word } from './types';
 
 export const getWord = async () => {
 
@@ -69,4 +69,41 @@ export const getDialogueByLabel = async (label: string) => {
   }
 
   return filteredSection;
+}
+
+export const getPhraseByText = async (text: string) => {
+
+  const file = await fs.readFile(process.cwd() + '/src/data/phrases.json', 'utf8');
+  const phrases: Phrase[] = JSON.parse(file);
+
+  const el = phrases.find(phrase => phrase.text === text)
+
+  if (!el) {
+    throw new Error("Phrase not found")
+  }
+
+  return el
+}
+
+export const getPhrases = async () => {
+  const file = await fs.readFile(process.cwd() + '/src/data/phrases.json', 'utf8');
+  const phrases: Phrase[] = JSON.parse(file);
+
+  return phrases
+}
+
+export const getPhrasesDifficulties = async () => {
+  const file = await fs.readFile(process.cwd() + '/src/data/phrases.json', 'utf8');
+  const phrases: Phrase[] = JSON.parse(file);
+
+  const difficulties: Set<Difficulty> = new Set(phrases.map(phrase => phrase.difficulty))
+
+  const result: Array<[number, Difficulty]> = []
+
+  difficulties.forEach(value => {
+    const amount = phrases.filter(phrase => phrase.difficulty === value).length
+    result.push([amount, value])
+  })
+
+  return result
 }

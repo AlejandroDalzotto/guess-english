@@ -13,9 +13,9 @@ const modes: GameMode[] = [
   {
     uuid: randomUUID(),
     name: "complete the phrase",
-    shortDescription: "Complete the blank places of the phrase.",
+    shortDescription: "Order the sentence correctly.",
     href: "/complete-the-phrase",
-    available: false,
+    available: true,
   },
   {
     uuid: randomUUID(),

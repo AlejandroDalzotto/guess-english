@@ -6,7 +6,6 @@ import TopicTag from "./TopicTag";
 import { useDialogueStore } from "@/stores/dialogues-store";
 import DialogueOption from "./DialogueOption";
 import DialogueChat from "./DialogueChat";
-import clsx from "clsx";
 
 export default function DialogueGameMode({ label }: { label: string }) {
 

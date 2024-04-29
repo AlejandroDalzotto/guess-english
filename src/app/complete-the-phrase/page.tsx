@@ -1,4 +1,4 @@
-import CompleteThePhraseMode from '@/components/CompleteThePhraseMode';
+import CompleteThePhraseMode from '@/components/complete-the-phrase/CompleteThePhraseMode';
 import GoBackButton from '@/components/GoBackButton';
 import Title from '@/components/Title';
 import { type Metadata } from 'next';
@@ -17,7 +17,7 @@ export default function CompleteThePhrasePage() {
           <GoBackButton backTo="home" label="Back to home" />
         </div>
         <Title>
-          ¡Complete <br className="md:hidden" /> the phrase!
+          Complete <br className="md:hidden" /> the phrase
         </Title>
       </header>
       <section className="relative row-span-8">

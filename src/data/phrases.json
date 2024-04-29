@@ -1,0 +1,20 @@
+[
+  {
+    "text": "What's your name?",
+    "order": ["my", "name", "is", "nicolas"],
+    "options": ["my", "me", "do", "don't", "name", "i", "are", "is", "nicolas"],
+    "difficulty": "easy"
+  },
+  {
+    "text": "Where are you from?",
+    "order": ["i'm", "from", "spain"],
+    "options": ["i", "are", "i'm", "for", "from", "spain", "do"],
+    "difficulty": "medium"
+  },
+  {
+    "text": "How old are you?",
+    "order": ["i'm", "21", "years", "old"],
+    "options": ["i", "i'm", "have", "21", "years", "old", "do"],
+    "difficulty": "hard"
+  }
+]
