@@ -1,9 +1,10 @@
+import type { Difficulty, Tuple } from "@/lib/types"
 import { getPhrasesDifficulties } from "@/lib/actions"
 import { generateUUID } from "@/lib/utils"
 
 export default async function CompleteThePhraseMode() {
 
-  const difficulties = await getPhrasesDifficulties()
+  const difficulties: readonly Tuple<number, Difficulty>[] = await getPhrasesDifficulties()
 
   return (
     <article className="h-full">
@@ -34,9 +35,7 @@ export default async function CompleteThePhraseMode() {
       </section>
 
       <footer>
-
-        {/*  */}
-
+          
       </footer>
     </article>
   )

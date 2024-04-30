@@ -9,17 +9,14 @@ import DialogueChat from "./DialogueChat";
 
 export default function DialogueGameMode({ label }: { label: string }) {
 
-  const section = useDialogueStore(state => state.section)
-  const currentDialogueIndex = useDialogueStore(state => state.currentDialogueIndex)
-  const gameState = useDialogueStore(state => state.gameState)
-  const records = useDialogueStore(state => state.records)
+  const stories = useDialogueStore(state => state.stories)
+  const currentPlaying = useDialogueStore(state => state.currentPlaying)
 
-  if (!section) {
-    return <span>store no initialized...</span>
+  if (!stories || !stories.length) {
+    return <span>store no initialized correctly...</span>
   }
 
-  const dialogues = section.dialogues
-  const isCompleted = records.some(value => value.toLowerCase() === label.toLowerCase())
+  const { currentDialogueIndex, completed, dialogue } = stories.find(story => story.dialogue.title === currentPlaying)!
 
   return (
     <>
@@ -28,7 +25,7 @@ export default function DialogueGameMode({ label }: { label: string }) {
           <GoBackButton backTo="home" label="Go back" />
         </div>
         <div className="flex flex-col items-center md:flex-row gap-x-5">
-          {isCompleted ? (
+          {completed ? (
             <span
               className="bg-green-500/10 text-green-500 border-green-500 text-base rounded-full whitespace-nowrap py-1 px-3 lowercase border"
             >
@@ -42,14 +39,14 @@ export default function DialogueGameMode({ label }: { label: string }) {
             </span>
           )}
           <h1 className="w-full text-4xl font-bold text-center">{label}</h1>
-          <TopicTag topic={section.topic} />
+          <TopicTag topic={dialogue.topic} />
         </div>
       </header>
       <section className="relative row-span-6">
 
         <p className="mb-10 text-center text-balance italic">
           &ldquo;
-          {section.description}
+          {dialogue.description}
           &rdquo;
         </p>
 
@@ -57,15 +54,11 @@ export default function DialogueGameMode({ label }: { label: string }) {
 
         <article className="grid grid-cols-1 gap-5 mt-10 md:grid-cols-2">
           {
-            gameState === "playing" ? (
-
-              shuffleArray(dialogues[currentDialogueIndex].options).map((option) => {
-                return (
-                  <DialogueOption key={generateUUID()} option={option} />
-                )
-              })
-
-            ) : null
+            shuffleArray(dialogue.dialogues[currentDialogueIndex].options).map((option) => {
+              return (
+                <DialogueOption key={generateUUID()} option={option} />
+              )
+            })
           }
         </article>
       </section>

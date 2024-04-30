@@ -79,7 +79,7 @@ export type Line = {
 /**
  * Represents the object stored in json/db for one dialogue's line.
  */
-export type Dialogue = {
+export type DialogueLine = {
   text: string;
   /**
    * Options available to choose from with a total of four where only one will be correct.
@@ -93,12 +93,20 @@ export type Dialogue = {
   sender: string;
 }
 
-export type DialogueSection = {
+export type Dialogue = {
   topic: Topic;
   title: string;
-  dialogues: Dialogue[];
+  dialogues: DialogueLine[];
   final: Line;
   description: string;
+}
+
+export type Story = {
+  chat: Line[];
+  dialogue: Dialogue;
+  currentCorrect: string;
+  currentDialogueIndex: number;
+  completed: boolean;
 }
 
 /** Represents the complexity of each sentence (Phrase) */
@@ -124,3 +132,5 @@ export type Phrase = {
   options: string[],
   difficulty: Difficulty
 }
+
+export type Tuple<T, E> = [T, E];

@@ -1,6 +1,6 @@
 "use server";
 import { promises as fs } from 'fs';
-import type { DialogueSection, Difficulty, Phrase, Topic, Word } from './types';
+import type { Dialogue, Difficulty, Phrase, Topic, Tuple, Word } from './types';
 
 export const getWord = async () => {
 
@@ -33,7 +33,7 @@ export const getTotalWords = async () => {
 
 export const getDialoguesTopics = async () => {
   const file = await fs.readFile(process.cwd() + '/src/data/dialogues.json', 'utf8');
-  const sections: DialogueSection[] = JSON.parse(file);
+  const sections: Dialogue[] = JSON.parse(file);
 
   const result = new Set(sections.map(dialogue => dialogue.topic))
 
@@ -42,7 +42,7 @@ export const getDialoguesTopics = async () => {
 
 export const getTotalDialoguesByTopic = async (topic: Topic | string) => {
   const file = await fs.readFile(process.cwd() + '/src/data/dialogues.json', 'utf8');
-  const sections: DialogueSection[] = JSON.parse(file);
+  const sections: Dialogue[] = JSON.parse(file);
 
   const filteredSections = sections.filter(dialogue => dialogue.topic === topic);
 
@@ -51,7 +51,7 @@ export const getTotalDialoguesByTopic = async (topic: Topic | string) => {
 
 export const getDialoguesByTopic = async (topic: Topic | string) => {
   const file = await fs.readFile(process.cwd() + '/src/data/dialogues.json', 'utf8');
-  const sections: DialogueSection[] = JSON.parse(file);
+  const sections: Dialogue[] = JSON.parse(file);
 
   const filteredSection = sections.filter(dialogue => dialogue.topic === topic);
 
@@ -60,7 +60,7 @@ export const getDialoguesByTopic = async (topic: Topic | string) => {
 
 export const getDialogueByLabel = async (label: string) => {
   const file = await fs.readFile(process.cwd() + '/src/data/dialogues.json', 'utf8');
-  const sections: DialogueSection[] = JSON.parse(file);
+  const sections: Dialogue[] = JSON.parse(file);
 
   const filteredSection = sections.find(value => value.title.replaceAll("-", " ").toLowerCase() === label.toLowerCase())
 
@@ -98,7 +98,7 @@ export const getPhrasesDifficulties = async () => {
 
   const difficulties: Set<Difficulty> = new Set(phrases.map(phrase => phrase.difficulty))
 
-  const result: Array<[number, Difficulty]> = []
+  const result: Tuple<number, Difficulty>[] = []
 
   difficulties.forEach(value => {
     const amount = phrases.filter(phrase => phrase.difficulty === value).length

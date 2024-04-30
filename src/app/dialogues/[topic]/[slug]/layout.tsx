@@ -19,14 +19,18 @@ export default function DialogueLayout({
   // Store's actions.
   const init = useDialogueStore(state => state.init)
   const records = useDialogueStore(state => state.records)
-  const sections = useDialogueStore(state => state.sections)
+  const sections = useDialogueStore(state => state.stories)
 
   useEffect(() => {
 
-    const label = toUpperFirst(params.slug)
-    if (!records.includes(label) || !sections.some(value => value.section.title === label)) {
-      init(label)
+    const initStore = async () => {
+      const label = toUpperFirst(params.slug)
+      if (!records.includes(label) || !sections.some(value => value.dialogue.title === label)) {
+        await init(label)
+      }
     }
+
+    initStore()
   }, [init, params.slug, records, sections])
 
   return children;
