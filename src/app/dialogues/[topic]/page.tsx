@@ -1,11 +1,11 @@
 import GoBackButton from "@/components/GoBackButton"
-import LinkSfx from "@/components/LinkSfx"
 import { Smoke4 } from "@/components/Smokes"
 import Title from "@/components/Title"
+import DialogueTopicLink from "@/components/dialogues/DialogueTopicLink"
 import { getDialoguesByTopic } from "@/lib/actions"
 import { Topic } from "@/lib/types"
 import { generateUUID, toUpperFirst } from "@/lib/utils"
-import type { Metadata, ResolvingMetadata } from "next"
+import type { Metadata } from "next"
 
 type Props = {
   params: {
@@ -54,15 +54,12 @@ export default async function DialogueByTopicPage({
 
                 return (
 
-                  <LinkSfx
-                    href={`/dialogues/${params.topic}/${item.slug}`}
-                    className="group/link w-full px-6 py-3 transition-all border rounded-lg shadow hover:bg-white/5 border-neutral-800"
+                  <DialogueTopicLink
                     key={generateUUID()}
-                  >
-
-                    <p className="group-hover/link:translate-x-5 transition-transform">{item.title}</p>
-
-                  </LinkSfx>
+                    slug={item.slug}
+                    title={item.title}
+                    topic={params.topic}
+                  />
 
                 )
 

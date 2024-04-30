@@ -89,7 +89,7 @@ export const useDialogueStore = create<State & Actions>()(
               chat: [...currentSectionPlaying.chat, userDialogue, finalSentence],
               completed: true,
             }),
-            records: [...prev.records, currentSectionPlaying.dialogue.title]
+            records: [...prev.records, currentSectionPlaying.dialogue.slug]
           }))
         }
 
