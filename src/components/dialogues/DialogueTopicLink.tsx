@@ -14,7 +14,7 @@ interface Props {
 export default function DialogueTopicLink({ slug, title, topic }: Props) {
 
   const records = useDialogueStore(state => state.records)
-  const completed = records.some(record => record === slug)
+  const completed = records.has(slug)
 
   return (
     <LinkSfx
@@ -24,7 +24,8 @@ export default function DialogueTopicLink({ slug, title, topic }: Props) {
 
       <p className="transition-transform group-hover/link:translate-x-5">{title}</p>
       <span className={clsx(
-        "group-hover/link:-translate-x-5 opacity-0 transition-all group-hover/link:opacity-100"
+        "group-hover/link:-translate-x-5 opacity-0 transition-all group-hover/link:opacity-100",
+        { "": completed }
       )}>
         {completed ? "completed" : "incompleted"}
       </span>

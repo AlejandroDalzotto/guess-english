@@ -4,7 +4,7 @@ import { create } from 'zustand'
 import { type PersistStorage, StorageValue, createJSONStorage, persist } from 'zustand/middleware';
 
 type State = {
-  records: Slug[];
+  records: Set<Slug>;
   stories: Map<Slug, Story>;
   currentPlaying: string;
 }
@@ -24,6 +24,7 @@ const storage: PersistStorage<State> = {
       state: {
         ...state,
         stories: new Map(state.stories),
+        records: new Set(state.records)
       },
     }
   },
@@ -33,6 +34,7 @@ const storage: PersistStorage<State> = {
       state: {
         ...newValue.state,
         stories: Array.from(newValue.state.stories.entries()),
+        records: Array.from(newValue.state.records.values())
       },
     })
     localStorage.setItem(name, str)
@@ -41,7 +43,7 @@ const storage: PersistStorage<State> = {
 }
 
 const initialState: State = {
-  records: [],
+  records: new Set(),
   stories: new Map(),
   currentPlaying: "",
 }
@@ -89,7 +91,7 @@ export const useDialogueStore = create<State & Actions>()(
               chat: [...currentSectionPlaying.chat, userDialogue, finalSentence],
               completed: true,
             }),
-            records: [...prev.records, currentSectionPlaying.dialogue.slug]
+            records: new Set(prev.records).add(currentSectionPlaying.dialogue.slug)
           }))
         }
 
