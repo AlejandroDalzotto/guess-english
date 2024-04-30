@@ -13,6 +13,7 @@ type Actions = Readonly<{
   init: (slug: Slug) => Promise<void>;
   onVictory: () => void;
   onCorrect: () => void;
+  setCurrentPlaying: (slug: Slug) => void;
 }>
 
 const storage: PersistStorage<State> = {
@@ -70,11 +71,6 @@ export const useDialogueStore = create<State & Actions>()(
             currentDialogueIndex: 0
           })
         }))
-
-
-        set(() => ({
-          currentPlaying: dialogueFromJson.slug
-        }))
       },
       onVictory: () => {
 
@@ -103,7 +99,7 @@ export const useDialogueStore = create<State & Actions>()(
         if (currentSectionPlaying) {
 
           const nextDialogue = currentSectionPlaying.dialogue.dialogues[currentSectionPlaying.currentDialogueIndex + 1]
-          const correct = currentSectionPlaying.dialogue.dialogues[currentSectionPlaying.currentDialogueIndex + 1].correct
+          const correct = currentSectionPlaying.dialogue.dialogues[currentSectionPlaying.currentDialogueIndex].correct
           const userDialogue: Line = { text: correct, sender: "me" }
 
           set((prev) => ({
@@ -119,7 +115,12 @@ export const useDialogueStore = create<State & Actions>()(
           }))
         }
 
-      }
+      },
+      setCurrentPlaying: (slug) => {
+
+        set(() => ({ currentPlaying: slug }))
+
+      },
     }),
     {
       name: "dialogue-store",

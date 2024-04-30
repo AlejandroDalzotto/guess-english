@@ -1,4 +1,5 @@
 import type { UUID } from "crypto";
+import type { Difficulty, Topic } from "./enums";
 
 /**
  * for `Wordle`
@@ -59,13 +60,6 @@ export interface GameMode {
 
 export type Language = "english"
 
-/**
- * Available dialogue's topics in app.
-*/
-export enum Topic {
-  TRAVEL = "travel"
-}
-
 /** Custom type for slugs in **dynamic pages**. */
 export type Slug = string
 
@@ -109,13 +103,6 @@ export type Story = {
   currentCorrect: string;
   currentDialogueIndex: number;
   completed: boolean;
-}
-
-/** Represents the complexity of each sentence (Phrase) */
-export enum Difficulty {
-  Easy = "easy",
-  Medium = "medium",
-  Hard = "hard"
 }
 
 /** Representation of the data of each *phrase* in **Complete the phrase** */

@@ -1,6 +1,6 @@
 "use client";
 
-import type { Topic } from "@/lib/types";
+import type { Topic } from "@/lib/enums";
 import { useDialogueStore } from "@/stores/dialogues-store";
 import { useEffect } from "react";
 
@@ -17,6 +17,9 @@ export default function DialogueLayout({
 
   // Store's actions.
   const init = useDialogueStore(state => state.init)
+  const setCurrentPlaying = useDialogueStore(state => state.setCurrentPlaying)
+
+  // Store's attributes
   const stories = useDialogueStore(state => state.stories)
 
   useEffect(() => {
@@ -33,10 +36,12 @@ export default function DialogueLayout({
         console.log("Story already initialized")
       }
 
+      setCurrentPlaying(params.slug)
+
     }
 
     initStore()
-  }, [init, params.slug, stories])
+  }, [init, params.slug, stories, setCurrentPlaying])
 
   return children;
 }

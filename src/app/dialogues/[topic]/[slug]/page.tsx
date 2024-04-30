@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import type { Topic } from "@/lib/types";
+import type { Topic } from "@/lib/enums";
 import { toUpperFirst } from "@/lib/utils";
 import { Smoke4 } from "@/components/Smokes";
 import DialogueGameMode from "@/components/dialogues/DialogueGameMode";

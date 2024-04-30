@@ -3,7 +3,7 @@ import { Smoke4 } from "@/components/Smokes"
 import Title from "@/components/Title"
 import DialogueTopicLink from "@/components/dialogues/DialogueTopicLink"
 import { getDialoguesByTopic } from "@/lib/actions"
-import { Topic } from "@/lib/types"
+import { Topic } from "@/lib/enums"
 import { generateUUID, toUpperFirst } from "@/lib/utils"
 import type { Metadata } from "next"
 

@@ -1,5 +1,5 @@
 import { getTotalDialoguesByTopic } from "@/lib/actions";
-import type { Topic } from "@/lib/types";
+import type { Topic } from "@/lib/enums";
 
 export default async function TotalDialogues({ topic }: { topic: Topic }) {
 

@@ -1,6 +1,7 @@
 "use server";
 import { promises as fs } from 'fs';
-import type { Dialogue, Difficulty, Phrase, Slug, Topic, Tuple, Word } from './types';
+import type { Dialogue, Phrase, Slug, Tuple, Word } from './types';
+import type { Difficulty, Topic } from './enums';
 
 export const getWord = async () => {
 

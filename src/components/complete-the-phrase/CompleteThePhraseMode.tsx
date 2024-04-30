@@ -1,6 +1,8 @@
-import type { Difficulty, Tuple } from "@/lib/types"
+import type { Tuple } from "@/lib/types"
+import type { Difficulty } from "@/lib/enums"
 import { getPhrasesDifficulties } from "@/lib/actions"
 import { generateUUID } from "@/lib/utils"
+import Link from "next/link"
 
 export default async function CompleteThePhraseMode() {
 
@@ -20,12 +22,13 @@ export default async function CompleteThePhraseMode() {
 
             return (
 
-              <div
+              <Link
+                href={`/complete-the-phrase/${difficulty[1]}`}
                 className="flex flex-col w-full p-5 transition-all border rounded-lg hover:bg-white/5 hover:cursor-pointer gap-y-5 border-neutral-800 hover:scale-105"
                 key={generateUUID()}>
                 <h2 className="text-xl font-medium text-center capitalize">{difficulty[1]}</h2>
                 <p className="italic text-center text-neutral-600">total phrases: {difficulty[0]}</p>
-              </div>
+              </Link>
 
             )
 
@@ -35,7 +38,7 @@ export default async function CompleteThePhraseMode() {
       </section>
 
       <footer>
-          
+
       </footer>
     </article>
   )

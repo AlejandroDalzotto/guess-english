@@ -1,7 +1,8 @@
 "use client";
 
+import type{ Topic } from "@/lib/enums";
+import type { Slug } from "@/lib/types";
 import LinkSfx from "../LinkSfx";
-import type { Topic, Slug } from "@/lib/types";
 import { useDialogueStore } from "@/stores/dialogues-store";
 import clsx from "clsx";
 
