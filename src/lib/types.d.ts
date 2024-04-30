@@ -56,17 +56,18 @@ export interface GameMode {
   available: boolean;
 }
 
-/** Custom type for slugs in **dynamic pages**. */
-export type Slug = string
 
 export type Language = "english"
 
 /**
  * Available dialogue's topics in app.
- */
+*/
 export enum Topic {
   TRAVEL = "travel"
 }
+
+/** Custom type for slugs in **dynamic pages**. */
+export type Slug = string
 
 /**
  * Represents one dialogue's line from the chat.
