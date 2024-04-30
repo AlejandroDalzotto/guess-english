@@ -99,6 +99,7 @@ export type Dialogue = {
   dialogues: DialogueLine[];
   final: Line;
   description: string;
+  slug: Slug;
 }
 
 export type Story = {

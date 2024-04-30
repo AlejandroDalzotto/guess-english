@@ -12,11 +12,15 @@ export default function DialogueGameMode({ label }: { label: string }) {
   const stories = useDialogueStore(state => state.stories)
   const currentPlaying = useDialogueStore(state => state.currentPlaying)
 
-  if (!stories || !stories.length) {
+  if (!stories || !stories.size) {
     return <span>store no initialized correctly...</span>
   }
 
-  const { currentDialogueIndex, completed, dialogue } = stories.find(story => story.dialogue.title === currentPlaying)!
+  const story = stories.get(currentPlaying)
+
+  if (!story) {
+    return <p>story not found (DialogueGameMode)</p>
+  }
 
   return (
     <>
@@ -25,7 +29,7 @@ export default function DialogueGameMode({ label }: { label: string }) {
           <GoBackButton backTo="home" label="Go back" />
         </div>
         <div className="flex flex-col items-center md:flex-row gap-x-5">
-          {completed ? (
+          {story.completed ? (
             <span
               className="bg-green-500/10 text-green-500 border-green-500 text-base rounded-full whitespace-nowrap py-1 px-3 lowercase border"
             >
@@ -39,14 +43,14 @@ export default function DialogueGameMode({ label }: { label: string }) {
             </span>
           )}
           <h1 className="w-full text-4xl font-bold text-center">{label}</h1>
-          <TopicTag topic={dialogue.topic} />
+          <TopicTag topic={story.dialogue.topic} />
         </div>
       </header>
       <section className="relative row-span-6">
 
         <p className="mb-10 text-center text-balance italic">
           &ldquo;
-          {dialogue.description}
+          {story.dialogue.description}
           &rdquo;
         </p>
 
@@ -54,7 +58,7 @@ export default function DialogueGameMode({ label }: { label: string }) {
 
         <article className="grid grid-cols-1 gap-5 mt-10 md:grid-cols-2">
           {
-            shuffleArray(dialogue.dialogues[currentDialogueIndex].options).map((option) => {
+            shuffleArray(story.dialogue.dialogues[story.currentDialogueIndex].options).map((option) => {
               return (
                 <DialogueOption key={generateUUID()} option={option} />
               )

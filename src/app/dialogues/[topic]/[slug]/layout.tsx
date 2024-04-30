@@ -1,7 +1,6 @@
 "use client";
 
 import type { Topic } from "@/lib/types";
-import { toUpperFirst } from "@/lib/utils";
 import { useDialogueStore } from "@/stores/dialogues-store";
 import { useEffect } from "react";
 
@@ -18,20 +17,26 @@ export default function DialogueLayout({
 
   // Store's actions.
   const init = useDialogueStore(state => state.init)
-  const records = useDialogueStore(state => state.records)
-  const sections = useDialogueStore(state => state.stories)
+  const stories = useDialogueStore(state => state.stories)
 
   useEffect(() => {
 
     const initStore = async () => {
-      const label = toUpperFirst(params.slug)
-      if (!records.includes(label) || !sections.some(value => value.dialogue.title === label)) {
-        await init(label)
+
+      console.log({ stories, hydratated: useDialogueStore.persist.hasHydrated() })
+
+      if (!stories.has(params.slug)) {
+        await init(params.slug)
       }
+
+      if (stories.has(params.slug)) {
+        console.log("Story already initialized")
+      }
+
     }
 
     initStore()
-  }, [init, params.slug, records, sections])
+  }, [init, params.slug, stories])
 
   return children;
 }

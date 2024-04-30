@@ -51,12 +51,11 @@ export default async function DialogueByTopicPage({
           <article className="flex flex-col h-full gap-y-5">
             {
               dialogues.map((item) => {
-                const slug = item.title.toLowerCase().replaceAll(" ", "-")
 
                 return (
 
                   <LinkSfx
-                    href={`/dialogues/${params.topic}/${slug}`}
+                    href={`/dialogues/${params.topic}/${item.slug}`}
                     className="group/link w-full px-6 py-3 transition-all border rounded-lg shadow hover:bg-white/5 border-neutral-800"
                     key={generateUUID()}
                   >

@@ -10,12 +10,17 @@ export default function DialogueOption({ option }: { option: string }) {
   const onCorrect = useDialogueStore(state => state.onCorrect)
   const onVictory = useDialogueStore(state => state.onVictory)
 
-  const { currentDialogueIndex, completed, dialogue, currentCorrect } = stories.find(story => story.dialogue.title === currentPlaying)!
-
   //Sfx
   const [playCorrect] = useSound("/audio/reward.mp3", { volume: 0.5 })
   const [playDefeat] = useSound("/audio/error.mp3", { volume: 0.5 })
   const [playVictory] = useSound("/audio/discovery.mp3", { volume: 0.5 })
+
+  if (!stories.size || !currentPlaying) {
+    return <p>story not found (Options)</p>
+  }
+
+  const { currentDialogueIndex, completed, dialogue, currentCorrect } = stories.get(currentPlaying)!
+
 
   const handleClick = () => {
 

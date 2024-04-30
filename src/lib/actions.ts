@@ -1,6 +1,6 @@
 "use server";
 import { promises as fs } from 'fs';
-import type { Dialogue, Difficulty, Phrase, Topic, Tuple, Word } from './types';
+import type { Dialogue, Difficulty, Phrase, Slug, Topic, Tuple, Word } from './types';
 
 export const getWord = async () => {
 
@@ -58,11 +58,11 @@ export const getDialoguesByTopic = async (topic: Topic | string) => {
   return filteredSection;
 }
 
-export const getDialogueByLabel = async (label: string) => {
+export const getDialogueByLabel = async (slug: Slug) => {
   const file = await fs.readFile(process.cwd() + '/src/data/dialogues.json', 'utf8');
   const sections: Dialogue[] = JSON.parse(file);
 
-  const filteredSection = sections.find(value => value.title.replaceAll("-", " ").toLowerCase() === label.toLowerCase())
+  const filteredSection = sections.find(value => value.slug.toLowerCase() === slug.toLowerCase())
 
   if (!filteredSection) {
     throw new Error("Dialogue not found")

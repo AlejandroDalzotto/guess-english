@@ -9,12 +9,16 @@ export default function DialogueChat() {
   const stories = useDialogueStore(state => state.stories)
   const currentPlaying = useDialogueStore(state => state.currentPlaying)
 
-  const { chat } = stories.find(story => story.dialogue.title === currentPlaying)!
+  const story = stories.get(currentPlaying!)
+
+  if (!story) {
+    return <p className="text-neutral-600 font-bold italic">Story not found. Could no render the chat...</p>
+  }
 
   return (
     <article className="flex flex-col p-10 overflow-y-auto border rounded-lg min-h-96 max-h-96 border-neutral-800 gap-y-4">
       {
-        chat.map((value) => {
+        story.chat.map((value) => {
 
           if (value.sender !== "me") {
             return (
