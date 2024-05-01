@@ -1,20 +1,30 @@
 [
   {
-    "text": "What's your name?",
-    "order": ["my", "name", "is", "nicolas"],
-    "options": ["my", "me", "do", "don't", "name", "i", "are", "is", "nicolas"],
-    "difficulty": "easy"
+    "text": "¿Cómo te llamas?",
+    "order": ["what's", "your", "name"],
+    "options": ["what's", "call", "do", "don't", "name", "i", "you", "your", "is", "nicolas"],
+    "difficulty": "easy",
+    "type": "question"
   },
   {
-    "text": "Where are you from?",
-    "order": ["i'm", "from", "spain"],
-    "options": ["i", "are", "i'm", "for", "from", "spain", "do"],
-    "difficulty": "medium"
+    "text": "¿De dónde eres?",
+    "order": ["where", "are", "you", "from"],
+    "options": ["where", "i", "are", "you", "for", "from", "spain", "do"],
+    "difficulty": "easy",
+    "type": "question"
   },
   {
-    "text": "How old are you?",
-    "order": ["i'm", "21", "years", "old"],
-    "options": ["i", "i'm", "have", "21", "years", "old", "do"],
-    "difficulty": "hard"
+    "text": "¿Cuantos años tienes?",
+    "order": ["how", "old", "are", "you"],
+    "options": ["i", "is", "are", "have", "how", "years", "old", "you"],
+    "difficulty": "easy",
+    "type": "question"
+  },
+  {
+    "text": "Me gusta bailar y cantar",
+    "order": ["i", "like", "dancing", "and", "singing"],
+    "options": ["i", "is", "are", "have", "like", "dancing", "dance", "sing", "singing", "sign"],
+    "difficulty": "easy",
+    "type": "question"
   }
 ]

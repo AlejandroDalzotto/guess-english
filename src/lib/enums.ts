@@ -1,13 +1,22 @@
 /** Represents the complexity of each sentence (Phrase) */
 export enum Difficulty {
-  Easy = "easy",
-  Medium = "medium",
-  Hard = "hard"
+  EASY = "easy",
+  MEDIUM = "medium",
+  HARD = "hard",
 }
 
 /**
  * Available dialogue's topics in app.
 */
 export enum Topic {
-  TRAVEL = "travel"
+  TRAVEL = "travel",
+}
+
+/**
+ * Represents the type of a sentence.
+ */
+export enum PhraseType {
+  AFFIRMATIVE = "affirmative",
+  NEGATIVE = "negative",
+  QUESTION = "question"
 }
