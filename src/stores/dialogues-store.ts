@@ -1,7 +1,7 @@
 import { getDialogueByLabel } from '@/lib/actions';
 import { Line, Slug, Story } from '@/lib/types';
 import { create } from 'zustand'
-import { type PersistStorage, StorageValue, createJSONStorage, persist } from 'zustand/middleware';
+import { type PersistStorage, StorageValue, persist } from 'zustand/middleware';
 
 type State = {
   records: Set<Slug>;

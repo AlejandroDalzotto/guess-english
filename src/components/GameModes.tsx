@@ -12,9 +12,9 @@ const modes: GameMode[] = [
   },
   {
     uuid: randomUUID(),
-    name: "complete the phrase",
+    name: "build the sentence",
     shortDescription: "Order the sentence correctly.",
-    href: "/complete-the-phrase",
+    href: "/build-the-sentence",
     available: true,
   },
   {

@@ -15,7 +15,7 @@ export enum Topic {
 /**
  * Represents the type of a sentence.
  */
-export enum PhraseType {
+export enum SentenceType {
   AFFIRMATIVE = "affirmative",
   NEGATIVE = "negative",
   QUESTION = "question"

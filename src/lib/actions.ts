@@ -1,6 +1,6 @@
 "use server";
 import { promises as fs } from 'fs';
-import type { Dialogue, Phrase, Slug, Tuple, Word } from './types';
+import type { Dialogue, Sentence, Slug, Tuple, Word } from './types';
 import type { Difficulty, Topic } from './enums';
 
 export const getWord = async () => {
@@ -72,39 +72,54 @@ export const getDialogueByLabel = async (slug: Slug) => {
   return filteredSection;
 }
 
-export const getPhraseByText = async (text: string) => {
+export const getSentenceByText = async (text: string) => {
 
-  const file = await fs.readFile(process.cwd() + '/src/data/phrases.json', 'utf8');
-  const phrases: Phrase[] = JSON.parse(file);
+  const file = await fs.readFile(process.cwd() + '/src/data/sentences.json', 'utf8');
+  const sentences: Sentence[] = JSON.parse(file);
 
-  const el = phrases.find(phrase => phrase.text === text)
+  const el = sentences.find(sentence => sentence.text === text)
 
   if (!el) {
-    throw new Error("Phrase not found")
+    throw new Error("Sentence not found")
   }
 
   return el
 }
 
-export const getPhrases = async () => {
-  const file = await fs.readFile(process.cwd() + '/src/data/phrases.json', 'utf8');
-  const phrases: Phrase[] = JSON.parse(file);
+export const getSentences = async () => {
+  const file = await fs.readFile(process.cwd() + '/src/data/sentences.json', 'utf8');
+  const sentences: Sentence[] = JSON.parse(file);
 
-  return phrases
+  return sentences
 }
 
-export const getPhrasesDifficulties = async () => {
-  const file = await fs.readFile(process.cwd() + '/src/data/phrases.json', 'utf8');
-  const phrases: Phrase[] = JSON.parse(file);
+export const getSentencesDifficulties = async () => {
+  const file = await fs.readFile(process.cwd() + '/src/data/sentences.json', 'utf8');
+  const sentences: Sentence[] = JSON.parse(file);
 
-  const difficulties: Set<Difficulty> = new Set(phrases.map(phrase => phrase.difficulty))
+  const difficulties: Set<Difficulty> = new Set(sentences.map(sentence => sentence.difficulty))
 
   const result: Tuple<number, Difficulty>[] = []
 
   difficulties.forEach(value => {
-    const amount = phrases.filter(phrase => phrase.difficulty === value).length
+    const amount = sentences.filter(sentence => sentence.difficulty === value).length
     result.push([amount, value])
   })
 
   return result
+}
+
+export const getSentencesByDifficulty = async (difficulty: Difficulty) => {
+  const file = await fs.readFile(process.cwd() + '/src/data/sentences.json', 'utf8');
+  const sentences: Sentence[] = JSON.parse(file);
+
+  const filteredSentences = sentences.filter(sentence => sentence.difficulty === difficulty)
+
+  return filteredSentences
+}
+export const getSentence = async (at: number = 0) => {
+  const file = await fs.readFile(process.cwd() + '/src/data/sentences.json', 'utf8');
+  const sentences: Sentence[] = JSON.parse(file);
+
+  return sentences.at(at)
 }

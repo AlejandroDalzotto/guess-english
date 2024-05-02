@@ -1,5 +1,5 @@
 import type { UUID } from "crypto";
-import type { Difficulty, PhraseType, Topic } from "./enums";
+import type { Difficulty, SentenceType, Topic } from "./enums";
 
 /**
  * for `Wordle`
@@ -105,8 +105,8 @@ export type Story = {
   completed: boolean;
 }
 
-/** Representation of the data of each *phrase* in **Complete the phrase** */
-export type Phrase = {
+/** Representation of the data of each *sentence* in **Complete the phrase** */
+export type Sentence = {
   /**
    * Initial sentence to answer.
    */
@@ -120,7 +120,7 @@ export type Phrase = {
    */
   options: string[],
   difficulty: Difficulty,
-  type: PhraseType
+  type: SentenceType
 }
 
 export type Tuple<T, E> = [T, E];
