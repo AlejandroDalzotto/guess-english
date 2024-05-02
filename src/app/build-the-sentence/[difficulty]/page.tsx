@@ -25,7 +25,7 @@ export default async function DynamicDifficultySentencesPage({
             Build the <br className="md:hidden" /> sentence
           </Title>
         </header>
-        <section className="relative grid grid-cols-2 row-span-6 gap-10">
+        <section className="relative row-span-6">
           <SentencesGameMode difficulty={params.difficulty} />
         </section>
       </main>

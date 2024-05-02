@@ -1,5 +1,6 @@
 [
   {
+    "id": "3c159cc03e-9122f-4c41-9701-6bca3esdaf8acb5c",
     "text": "¿Cómo te llamas?",
     "order": ["what's", "your", "name"],
     "options": ["what's", "call", "do", "don't", "name", "i", "you", "your", "is", "nicolas"],
@@ -7,6 +8,7 @@
     "type": "question"
   },
   {
+  "id": "716a55aASDFccac9-41222b-435b-82f4-asdcafd0cas09cASDC",
     "text": "¿De dónde eres?",
     "order": ["where", "are", "you", "from"],
     "options": ["where", "i", "are", "you", "for", "from", "spain", "do"],
@@ -14,6 +16,7 @@
     "type": "question"
   },
   {
+    "id": "b27e7cc8-f9a4-1230-b2c3-f19a2de6d7f7",
     "text": "¿Cuantos años tienes?",
     "order": ["how", "old", "are", "you"],
     "options": ["i", "is", "are", "have", "how", "years", "old", "you"],
@@ -21,6 +24,7 @@
     "type": "question"
   },
   {
+    "id": "5ddd38fd-56ca-9946-a868-1659b9a894ba",
     "text": "Me gusta bailar y cantar",
     "order": ["i", "like", "dancing", "and", "singing"],
     "options": ["i", "is", "are", "have", "like", "dancing", "dance", "sing", "singing", "sign"],

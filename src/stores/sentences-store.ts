@@ -4,13 +4,17 @@ import { create } from 'zustand'
 import { type PersistStorage, StorageValue, persist } from 'zustand/middleware';
 
 type State = {
-  currentSentence: Sentence | null;
+  sentence: Sentence | null;
   currentIndex: number;
+  current: string[];
 }
 
 type Actions = Readonly<{
-  onCorrect: () => Promise<void>;
   init: () => Promise<void>;
+  onCorrect: () => Promise<void>;
+  onWordSelect: (word: string) => void;
+  onWordDeselect: (word: string) => void;
+  check: () => boolean;
 }>
 
 const storage: PersistStorage<State> = {
@@ -40,7 +44,8 @@ const storage: PersistStorage<State> = {
 
 const initialState: State = {
   currentIndex: 0,
-  currentSentence: null
+  sentence: null,
+  current: []
 }
 
 export const useSentenceStore = create<State & Actions>()(
@@ -55,7 +60,7 @@ export const useSentenceStore = create<State & Actions>()(
 
           set(() => ({
             currentIndex: 0,
-            currentSentence: sentence,
+            sentence: sentence,
           }))
 
         }
@@ -69,17 +74,45 @@ export const useSentenceStore = create<State & Actions>()(
 
           set((prev) => ({
             currentIndex: prev.currentIndex + 1,
-            currentSentence: sentence,
+            sentence: sentence,
           }))
 
           return;
         }
 
         set(() => ({
-          currentSentence: null,
+          sentence: null,
         }))
 
       },
+      onWordSelect: (word: string) => {
+
+        set((prev) => ({
+          current: [...prev.current, word]
+        }))
+
+      },
+      onWordDeselect: (word: string) => {
+
+        set((prev) => ({
+          current: prev.current.filter(value => value !== word)
+        }))
+
+      },
+      check: () => {
+
+        const sentence = get().sentence
+
+        if (sentence) {
+
+          const { order: correctOrder } = sentence
+          const current = get().current
+
+          return current.toString() === correctOrder.toString();
+        }
+
+        return false;
+      }
     }),
     {
       name: "sentences-store",

@@ -20,3 +20,9 @@ export enum SentenceType {
   NEGATIVE = "negative",
   QUESTION = "question"
 }
+
+export enum GameState {
+  CORRECT = "correct",
+  INCORRECT = "incorrect",
+  IDLE = "idle"
+}

@@ -121,6 +121,7 @@ export type Sentence = {
   options: string[],
   difficulty: Difficulty,
   type: SentenceType
+  id: string;
 }
 
 export type Tuple<T, E> = [T, E];
