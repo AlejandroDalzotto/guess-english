@@ -1,6 +1,6 @@
 "use client";
 
-import { generateUUID, shuffleArray } from "@/lib/utils";
+import { shuffleArray } from "@/lib/utils";
 import GoBackButton from "../GoBackButton";
 import TopicTag from "./TopicTag";
 import { useDialogueStore } from "@/stores/dialogues-store";
@@ -60,7 +60,7 @@ export default function DialogueGameMode({ label }: { label: string }) {
           {
             shuffleArray(story.dialogue.dialogues[story.currentDialogueIndex].options).map((option) => {
               return (
-                <DialogueOption key={generateUUID()} option={option} />
+                <DialogueOption key={option + "option"} option={option} />
               )
             })
           }

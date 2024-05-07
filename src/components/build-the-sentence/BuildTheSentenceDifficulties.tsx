@@ -1,7 +1,6 @@
 import type { Tuple } from "@/lib/types"
 import type { Difficulty } from "@/lib/enums"
 import { getSentencesDifficulties } from "@/lib/actions"
-import { generateUUID } from "@/lib/utils"
 import Link from "next/link"
 
 export default async function BuildTheSentenceDifficulties() {
@@ -25,7 +24,7 @@ export default async function BuildTheSentenceDifficulties() {
               <Link
                 href={`/build-the-sentence/${difficulty[1]}`}
                 className="flex flex-col w-full p-5 transition-all border rounded-lg hover:bg-white/5 hover:cursor-pointer gap-y-5 border-neutral-800 hover:scale-105"
-                key={generateUUID()}>
+                key={difficulty[1]}>
                 <h2 className="text-xl font-medium text-center capitalize">{difficulty[1]}</h2>
                 <p className="italic text-center text-neutral-600">total sentences: {difficulty[0]}</p>
               </Link>

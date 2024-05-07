@@ -2,7 +2,6 @@
 
 import { useGameAction } from "@/hooks/use-game-action";
 import { Difficulty, GameState } from "@/lib/enums"
-import { generateUUID } from "@/lib/utils";
 import { useSentenceStore } from "@/stores/sentences-store"
 import clsx from "clsx";
 import { useCallback, useMemo } from "react";
@@ -82,7 +81,7 @@ const SentencesGameMode = ({
               return (
                 <span
                   className="underline decoration-neutral-400 decoration-dotted"
-                  key={sentence.id + word + "title"}>
+                  key={sentence.id + "title"}>
                   {word}
                 </span>
               )
@@ -110,7 +109,7 @@ const SentencesGameMode = ({
                     { "border-green-400 text-green-400": correct === GameState.CORRECT },
                     { "border-red-400 text-red-400": correct === GameState.INCORRECT },
                   )}
-                  key={sentence.id + word + "board"}
+                  key={sentence.id + "board"}
                 >
                   {word}
                 </button>
@@ -132,7 +131,7 @@ const SentencesGameMode = ({
                   disabled={isWordSelected(option)}
                   onClick={() => handleClick(option)}
                   className="select-none disabled:pointer-events-none disabled:border-neutral-800 disabled:text-neutral-600 px-3 py-1 text-xl transition-all border border-b-4 rounded-lg w-fit border-neutral-400 text-neutral-200 hover:translate-y-0.5 hover:border-b-2"
-                  key={sentence.id + option + "option"}
+                  key={sentence.id + "option"}
                 >
                   {option.toLowerCase()}
                 </button>

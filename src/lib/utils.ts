@@ -1,39 +1,4 @@
-import { translatedVerbs, verbs } from "@/lib/data";
-import type { Letter, Verb, Word } from "./types";
-
-export const generateOptions = (mainVerb: string | undefined): string[] => {
-
-  if (!mainVerb || mainVerb === "") {
-    throw new Error("There was a problem generating the options.");
-  }
-
-  const options = [mainVerb];
-
-  while (options.length < 4) {
-    const randIndex = Math.floor(Math.random() * translatedVerbs.length);
-    const randomVerb = translatedVerbs[randIndex];
-    if (!options.includes(randomVerb)) {
-      options.push(randomVerb);
-    }
-  }
-
-  return shuffleArray(options);
-}
-
-export const getRandomVerb = (currentVerbsHistory: Verb[]): Verb => {
-  let verb: Verb | undefined;
-
-  do {
-    const randIndex = Math.floor(Math.random() * verbs.length);
-    verb = verbs.at(randIndex);
-  } while (verb && currentVerbsHistory.some(v => v.value === verb?.value));
-
-  if (!verb) {
-    throw new Error("Verb not found.");
-  }
-
-  return verb;
-}
+import type { Letter, Word } from "./types";
 
 export const shuffleArray = <T>(array: T[]): T[] => {
 
@@ -63,14 +28,6 @@ export const calculatePoints = (currentPoints: number, streak: number, operation
   }
 
   return Math.round(currentPoints + points);
-}
-
-export const generateUUID = (): string => {
-  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-    const r = Math.random() * 16 | 0;
-    const v = c === 'x' ? r : (r & 0x3 | 0x8);
-    return v.toString(16);
-  });
 }
 
 export const isValidKey = (key: string): boolean => {

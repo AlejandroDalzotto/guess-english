@@ -1,31 +1,23 @@
-import { randomUUID } from "crypto";
 import { GameMode } from "@/lib/types";
 import GameCard from "./GameCard";
 
 const modes: GameMode[] = [
   {
-    uuid: randomUUID(),
-    name: "guess the verb",
-    shortDescription: "Select the correct translation of the verb.",
-    href: "/guess-the-verb",
-    available: true,
-  },
-  {
-    uuid: randomUUID(),
+    id: "1-build-the-sentence-game-adsf77as7f1",
     name: "build the sentence",
     shortDescription: "Order the sentence correctly.",
     href: "/build-the-sentence",
     available: true,
   },
   {
-    uuid: randomUUID(),
+    id: "2-wordle-game-9as9db1b2",
     name: "wordle",
     shortDescription: "Get 6 chances to guess a 5-letters word.",
     href: "/wordle",
     available: true,
   },
   {
-    uuid: randomUUID(),
+    id: "3-dialogues-game-cQ92vF12er",
     name: "Dialogues",
     shortDescription: "Respond to dialogues correctly.",
     href: "/dialogues",
@@ -43,7 +35,7 @@ export default function GameModes() {
 
             return (
 
-              <div className="flex flex-col items-start gap-y-3" key={mode.uuid}>
+              <div className="flex flex-col items-start gap-y-3" key={mode.id}>
                 <GameCard mode={mode} />
               </div>
 

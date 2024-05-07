@@ -4,7 +4,7 @@ import Title from "@/components/Title"
 import DialogueTopicLink from "@/components/dialogues/DialogueTopicLink"
 import { getDialoguesByTopic } from "@/lib/actions"
 import { Topic } from "@/lib/enums"
-import { generateUUID, toUpperFirst } from "@/lib/utils"
+import { toUpperFirst } from "@/lib/utils"
 import type { Metadata } from "next"
 
 type Props = {
@@ -55,7 +55,7 @@ export default async function DialogueByTopicPage({
                 return (
 
                   <DialogueTopicLink
-                    key={generateUUID()}
+                    key={item.slug + item.final.sender}
                     slug={item.slug}
                     title={item.title}
                     topic={params.topic}

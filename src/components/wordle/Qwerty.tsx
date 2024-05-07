@@ -1,6 +1,5 @@
 "use client";
 
-import { generateUUID } from "@/lib/utils";
 import { useWordleStore } from "@/stores/wordle-store";
 import clsx from "clsx";
 import BackspaceButton from "@/components/wordle/BackspaceButton";
@@ -15,7 +14,7 @@ export default function Qwerty() {
       {
         qwerty.map((row, rowIndex) => {
           return (
-            <div className="flex gap-x-2" key={generateUUID()}>
+            <div className="flex gap-x-2" key={rowIndex.toString() + "qwerty-row"}>
               {
                 row.map((letter) => {
 
@@ -28,7 +27,7 @@ export default function Qwerty() {
                         { "bg-yellow-500": letter.color === "yellow" },
                         { "bg-green-500": letter.color === "green" },
                         { "bg-neutral-950": letter.color === "gray" },
-                      )} key={generateUUID()}>
+                      )} key={rowIndex.toString() + letter.toString() + "qwerty-letter"}>
                       {letter.value}
                     </button>
                   )

@@ -1,6 +1,5 @@
 "use client";
 
-import { generateUUID } from "@/lib/utils"
 import { useWordleStore } from "@/stores/wordle-store";
 import clsx from "clsx";
 
@@ -18,7 +17,7 @@ export default function Board() {
 
           return (
 
-            <div className="flex justify-center w-full gap-x-1" key={generateUUID()}>
+            <div className="flex justify-center w-full gap-x-1" key={row.toString()}>
 
               {
                 row.map((letter, colIndex) => {
@@ -34,7 +33,7 @@ export default function Board() {
                         { "bg-green-500": letter.color === "green" },
                         { "bg-neutral-950": letter.color === "gray" },
                       )}
-                      key={generateUUID()}
+                      key={rowIndex.toString() + colIndex.toString() + "board"}
                     >
                       {letter.value}
                     </div>
