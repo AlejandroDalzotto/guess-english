@@ -43,12 +43,14 @@ const SentencesGameMode = ({
     }
   }, [current, onSelect, onDeselect]);
 
-  const handleCheck = useCallback(() => {
+  const handleCheck = () => {
     if (current.length > 2) {
       const isCorrect = check();
-      setCorrect(isCorrect ? GameState.CORRECT : GameState.INCORRECT);
+      const newState = isCorrect ? GameState.CORRECT : GameState.INCORRECT
+
+      setCorrect(newState);
     }
-  }, [current.length, check, setCorrect]);
+  }
 
   if (!sentence) {
     return (
@@ -105,8 +107,8 @@ const SentencesGameMode = ({
                   className={clsx(
                     "select-none px-3 py-1 text-xl h-fit transition-all border border-b-4 rounded-lg w-fit border-neutral-400 text-neutral-200 hover:translate-y-0.5 hover:border-b-2",
                     { "capitalize": i === 0 },
-                    { "border-red-400 text-red-400": correct === GameState.INCORRECT },
                     { "border-green-400 text-green-400": correct === GameState.CORRECT },
+                    { "border-red-400 text-red-400": correct === GameState.INCORRECT },
                   )}
                   key={sentence.id + word + "board"}
                 >

@@ -24,33 +24,8 @@ export type Letter = {
 
 export type Word = Letter[]
 
-/**
- * for `Guess the verb`
- */
-export interface Verb {
-  /**
-   * The verb itself.
-   */
-  value: string;
-  /**
-   * Most common translations of the verb.
-   */
-  translations: string[];
-  /**
-   * Some example sentences.
-   */
-  examplePhrases: string[];
-  /**
-   * The words that should be highlighted in the example sentences.
-   * This is because a verb can be written in different tenses and change.
-   * 
-   * For example: `add` and `added`.
-   */
-  highlight: string[];
-}
-
 export interface GameMode {
-  uuid: UUID;
+  id: string;
   name: string;
   shortDescription: string;
   href: string;

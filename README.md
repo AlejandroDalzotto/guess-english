@@ -11,7 +11,6 @@ Guess English es una pequeña aplicación web creada para aquellos hablantes nat
 ## Modos de juego
 Como principales modos de juego para una primera version estable de GE se encuentran:
 - `Wordle`
-- `Guess the Verb`
 - `The alphabet game`
 - `Complete the phrase`
 
@@ -27,16 +26,6 @@ Cada intento debe ser una palabra válida. En cada ronda el juego pinta cada let
 
 #### Letras repetidas
 La palabra oculta puede tener letras repetidas. En ese caso, las pistas son independientes para cada letra y tienen prioridad (verde es mayor a amarillo).
-
-### ¿Cómo jugar a Guess the verb?
-
---- 
-Guess the verb es un juego simple donde aparece en pantalla un texto que pregunta el significado o traducción de un verbo del inglés y nosotros debemos elegir la opción correcta entre cuatro posibles respuestas.
-
-El juego cuenta con un sistema de puntos y rachas que irán aumentando o disminuyendo cuando aciertes o falles respectivamente.
-Cada acierto te sumará 5 puntos y perder te quitará 5. Si ganas tu racha aumenta de 1 en 1 y si pierdes vuelve a 0.
-
-Entre las opciones y los puntos tendrás un pequeño cartel que te va indicando cuantos verbos que faltan adivinar.
 
 ### ¿Cómo jugar a The alphabet game?
 The alphabet game funciona igual que el clasico juego de PasaPalabra donde empezamos desde la letra A hasta la Z pasando por cada letra del abecedario inglés teniendo en cuenta que estaremos a contrarreloj.
